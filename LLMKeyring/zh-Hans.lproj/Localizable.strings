@@ -107,3 +107,13 @@
 "CopyBaseURL" = "复制 Base URL";
 "APIKeyCopied" = "API Key 已复制";
 "BaseURLCopied" = "Base URL 已复制";
+
+/* 更多类型与模板 */
+"KindAzureOpenAI" = "Azure OpenAI";
+"ERR_ROUTE_HINT_AZURE" = "路由错误。Base 应为 https://<resource>.openai.azure.com（不要带 /v1）。";
+"TemplateAzureOpenAI" = "Azure OpenAI";
+"TemplateOpenRouter" = "OpenRouter";
+"TemplateTogether" = "Together AI";
+"ProviderNameAzureOpenAI" = "Azure OpenAI";
+"ProviderNameOpenRouter" = "OpenRouter";
+"ProviderNameTogether" = "Together AI";

@@ -200,6 +200,39 @@ final class ProviderStore: ObservableObject {
             extraHeaders: [:]
         ))
 
+        // Azure OpenAI (placeholder resource)
+        defaults.append(Provider(
+            name: NSLocalizedString("ProviderNameAzureOpenAI", comment: "Azure OpenAI"),
+            kind: .azureOpenAI,
+            baseURL: "https://YOUR_RESOURCE_NAME.openai.azure.com",
+            defaultModel: nil,
+            enabled: true,
+            auth: .bearer(keyRef: "prov_\(UUID().uuidString)"),
+            extraHeaders: [:]
+        ))
+
+        // OpenRouter (OpenAI-compatible)
+        defaults.append(Provider(
+            name: NSLocalizedString("ProviderNameOpenRouter", comment: "OpenRouter"),
+            kind: .openAICompatible,
+            baseURL: "https://openrouter.ai/api",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: ["HTTP-Referer": "https://github.com/", "X-Title": "LLMKeyring"]
+        ))
+
+        // Together AI (OpenAI-compatible)
+        defaults.append(Provider(
+            name: NSLocalizedString("ProviderNameTogether", comment: "Together AI"),
+            kind: .openAICompatible,
+            baseURL: "https://api.together.xyz",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: [:]
+        ))
+
         self.providers = defaults
         self.defaultProviderID = defaults.first?.id
     }
