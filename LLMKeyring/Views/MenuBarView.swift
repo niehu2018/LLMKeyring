@@ -3,6 +3,7 @@ import SwiftUI
 struct MenuBarView: View {
     @EnvironmentObject var store: ProviderStore
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.locale) private var locale
     @State private var isTesting = false
 
     var body: some View {
@@ -42,6 +43,7 @@ struct MenuBarView: View {
         }
         .padding(12)
         .frame(minWidth: 260)
+        .id(locale)
     }
 
     private func testDefault() async {

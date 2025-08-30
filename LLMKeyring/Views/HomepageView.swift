@@ -5,6 +5,7 @@ struct HomepageView: View {
     @EnvironmentObject var store: ProviderStore
     @State private var revealed: [UUID: String] = [:]
     @State private var message: String?
+    @Environment(\.locale) private var locale
     var onOpenProvider: ((UUID) -> Void)? = nil
 
     var body: some View {
@@ -65,6 +66,7 @@ struct HomepageView: View {
             }
         }
         .padding()
+        .id(locale)
     }
 
     private func hasKey(_ p: Provider) -> Bool { if case .bearer = p.auth { return true } else { return false } }

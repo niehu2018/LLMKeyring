@@ -37,6 +37,7 @@ struct LLMKeyringApp: App {
         Settings {
             AppSettingsView()
                 .environmentObject(store)
+                .environment(\.locale, appLocale)
         }
     }
 }
