@@ -148,6 +148,7 @@
 "ERR_BAIDU_TOKEN_HINT" = "请在 Keychain 中保存 access_token，并将 Base URL 设置为 https://aip.baidubce.com";
 "ERR_VERTEX_BASE_HINT" = "Base 需包含 /v1/projects/{project}/locations/{region}";
 "ERR_VERTEX_AUTH_HINT" = "请提供 OAuth 访问令牌（gcloud 或服务账号）";
+"NormalizeExplain" = "Normalize：按提供商推荐规范修正 Base URL，避免常见路径/域名错误。";
 
 /* 设置界面 */
 "LanguageSection" = "语言";

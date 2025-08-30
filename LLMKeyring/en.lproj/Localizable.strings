@@ -148,6 +148,7 @@
 "ERR_BAIDU_TOKEN_HINT" = "Provide access_token in Keychain and set Base URL to https://aip.baidubce.com";
 "ERR_VERTEX_BASE_HINT" = "Base should include /v1/projects/{project}/locations/{region}";
 "ERR_VERTEX_AUTH_HINT" = "Provide an OAuth access token (gcloud or service account)";
+"NormalizeExplain" = "Normalize: Fix Base URL to provider's recommended form to avoid common path/host errors.";
 
 /* Settings */
 "LanguageSection" = "Language";
