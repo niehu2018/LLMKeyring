@@ -1,0 +1,101 @@
+/* English localization */
+"选择左侧的提供商或创建新的" = "Select a provider or create one";
+"新增" = "New";
+"删除" = "Delete";
+"设为默认" = "Set Default";
+"测试" = "Test";
+"提供商管理" = "Provider Manager";
+
+"未设置默认提供商" = "No default provider";
+"切换默认提供商" = "Switch Default Provider";
+"打开管理器" = "Open Manager";
+"测试默认提供商" = "Test Default Provider";
+
+"基本信息" = "General";
+"名称" = "Name";
+"类型" = "Type";
+"默认模型（可选）" = "Default Model (optional)";
+"启用" = "Enabled";
+
+"鉴权" = "Authentication";
+"已保存到 Keychain:" = "Saved in Keychain:";
+"未保存 API Key" = "No API Key saved";
+"保存" = "Save";
+"移除" = "Remove";
+"已保存" = "Saved";
+
+"额外 Header（可选）" = "Extra Headers (optional)";
+"连通性测试" = "Connectivity Test";
+"未测试" = "Not tested";
+
+"新 Key" = "New Key";
+"新 Value" = "New Value";
+"添加" = "Add";
+
+/* Adapter messages */
+"OK" = "OK";
+"ERR_BASE_URL_INVALID" = "Base URL is invalid";
+"ERR_KEYCHAIN_MISSING" = "No credential found in Keychain";
+"ERR_AUTH_FAILED_HINT" = "Authentication failed. Check API key and permissions.";
+"ERR_ROUTE_HINT_ALIYUN" = "Route error. For Aliyun compatible mode, use https://dashscope.aliyuncs.com/compatible-mode";
+"ERR_RATE_LIMITED" = "Rate limited (429)";
+"ERR_HTTP_CODE_FMT" = "HTTP %d";
+"ERR_ROUTE_HINT_OLLAMA" = "Route error. Check Base URL (no /v1)";
+
+/* Titles */
+"ManagerTitle" = "Keyring";
+"LLMTitle" = "Keyring";
+
+/* Templates and Provider Names */
+"TemplateDeepSeek" = "DeepSeek";
+"TemplateKimi" = "Kimi (Moonshot)";
+"TemplateSiliconFlow" = "SiliconFlow";
+"TemplateOllama" = "Ollama (local)";
+"TemplateAliyunNative" = "Aliyun (DashScope Native)";
+"BlankProvider" = "New Provider";
+
+"ProviderNameDeepSeek" = "DeepSeek";
+"ProviderNameKimi" = "Kimi (Moonshot)";
+"ProviderNameSiliconFlow" = "SiliconFlow";
+"ProviderNameOllama" = "Ollama (local)";
+"ProviderNameAliyunNative" = "Aliyun (DashScope Native)";
+
+/* Kinds */
+"KindOpenAICompatible" = "OpenAI-Compatible";
+"KindOllama" = "Ollama";
+"KindAliyunNative" = "Aliyun (DashScope Native)";
+
+/* Hints */
+"HintAliyunBaseURL" = "For Aliyun compatible mode, use https://dashscope.aliyuncs.com/compatible-mode. We normalize /v1/models automatically.";
+
+/* Models */
+"ModelsSection" = "Models";
+"FetchModels" = "Fetch Models";
+"ModelsCountFmt" = "%d models";
+"PickDefaultModel" = "Pick Default Model";
+"ERR_LIST_MODELS_UNSUPPORTED" = "Listing models is not supported for this provider";
+"ERR_NO_MODELS_FOUND" = "No models found";
+"ERR_OLLAMA_LOCALHOST_IPV6_HINT" = "If connecting to localhost fails, try using http://127.0.0.1:11434 or ensure 'ollama serve' is running (e.g., 'brew services start ollama').";
+
+/* Homepage */
+"Homepage" = "Homepage";
+"ProvidersSection" = "Providers";
+"HomepageTitle" = "Saved API Keys";
+"KeySaved" = "Saved";
+"KeyMissing" = "Missing";
+"KeyRefFmt" = "Keychain account: %@";
+"Reveal" = "Reveal";
+"Hide" = "Hide";
+"Copy" = "Copy";
+"Copied" = "Copied";
+"Open" = "Open";
+"CopyCurl" = "Copy curl";
+"AuthNotRequiredOllama" = "Local Ollama does not require an API key";
+"ClearSavedKey" = "Clear saved key";
+
+/* Clear All Keys */
+"ClearAllKeys" = "Clear All API Keys";
+"ClearKeysTitle" = "Clear All API Keys?";
+"ClearKeysMessage" = "This will permanently delete all stored API keys. This action cannot be undone.";
+"ClearKeys" = "Clear";
+"Cancel" = "Cancel";

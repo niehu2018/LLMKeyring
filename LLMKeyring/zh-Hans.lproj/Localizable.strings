@@ -1,0 +1,101 @@
+/* 简体中文本地化 */
+"选择左侧的提供商或创建新的" = "选择左侧的提供商或创建新的";
+"新增" = "新增";
+"删除" = "删除";
+"设为默认" = "设为默认";
+"测试" = "测试";
+"提供商管理" = "提供商管理";
+
+"未设置默认提供商" = "未设置默认提供商";
+"切换默认提供商" = "切换默认提供商";
+"打开管理器" = "打开管理器";
+"测试默认提供商" = "测试默认提供商";
+
+"基本信息" = "基本信息";
+"名称" = "名称";
+"类型" = "类型";
+"默认模型（可选）" = "默认模型（可选）";
+"启用" = "启用";
+
+"鉴权" = "鉴权";
+"已保存到 Keychain:" = "已保存到 Keychain:";
+"未保存 API Key" = "未保存 API Key";
+"保存" = "保存";
+"移除" = "移除";
+"已保存" = "已保存";
+
+"额外 Header（可选）" = "额外 Header（可选）";
+"连通性测试" = "连通性测试";
+"未测试" = "未测试";
+
+"新 Key" = "新 Key";
+"新 Value" = "新 Value";
+"添加" = "添加";
+
+/* 适配器消息 */
+"OK" = "OK";
+"ERR_BASE_URL_INVALID" = "Base URL 无效";
+"ERR_KEYCHAIN_MISSING" = "未在 Keychain 找到凭证";
+"ERR_AUTH_FAILED_HINT" = "鉴权失败，请检查 API Key 权限与有效性";
+"ERR_ROUTE_HINT_ALIYUN" = "路由错误，检查 Base URL 是否正确（阿里云兼容模式建议使用 https://dashscope.aliyuncs.com/compatible-mode）";
+"ERR_RATE_LIMITED" = "频率受限（429）";
+"ERR_HTTP_CODE_FMT" = "HTTP %d";
+"ERR_ROUTE_HINT_OLLAMA" = "路由错误，检查 Base URL（应无 /v1）";
+
+/* 标题 */
+"ManagerTitle" = "钥匙串";
+"LLMTitle" = "钥匙串";
+
+/* 模板与默认名称 */
+"TemplateDeepSeek" = "DeepSeek";
+"TemplateKimi" = "Kimi（Moonshot）";
+"TemplateSiliconFlow" = "硅基流动（SiliconFlow）";
+"TemplateOllama" = "Ollama（本地）";
+"TemplateAliyunNative" = "阿里云（原生 DashScope）";
+"BlankProvider" = "空白提供商";
+
+"ProviderNameDeepSeek" = "DeepSeek";
+"ProviderNameKimi" = "Kimi（Moonshot）";
+"ProviderNameSiliconFlow" = "硅基流动（SiliconFlow）";
+"ProviderNameOllama" = "Ollama（本地）";
+"ProviderNameAliyunNative" = "阿里云（原生 DashScope）";
+
+/* 类型 */
+"KindOpenAICompatible" = "OpenAI 兼容";
+"KindOllama" = "Ollama";
+"KindAliyunNative" = "阿里云（原生 DashScope）";
+
+/* 提示 */
+"HintAliyunBaseURL" = "阿里云兼容模式建议使用 https://dashscope.aliyuncs.com/compatible-mode（我们会自动规范化 /v1/models）。";
+
+/* 模型 */
+"ModelsSection" = "模型";
+"FetchModels" = "获取模型";
+"ModelsCountFmt" = "%d 个模型";
+"PickDefaultModel" = "选择默认模型";
+"ERR_LIST_MODELS_UNSUPPORTED" = "该提供商暂不支持列出模型";
+"ERR_NO_MODELS_FOUND" = "未发现模型";
+"ERR_OLLAMA_LOCALHOST_IPV6_HINT" = "如果连接 localhost 失败，请改用 http://127.0.0.1:11434，或确保 Ollama 已启动（例如：brew services start ollama）。";
+
+/* 首页 */
+"Homepage" = "首页";
+"ProvidersSection" = "提供商";
+"HomepageTitle" = "已保存的 API Key";
+"KeySaved" = "已保存";
+"KeyMissing" = "未保存";
+"KeyRefFmt" = "Keychain 账户：%@";
+"Reveal" = "显示";
+"Hide" = "隐藏";
+"Copy" = "复制";
+"Copied" = "已复制";
+"Open" = "打开";
+"CopyCurl" = "复制 curl";
+"AuthNotRequiredOllama" = "本地 Ollama 无需 API Key";
+"ClearSavedKey" = "清除已保存的 Key";
+
+/* 清除所有密钥 */
+"ClearAllKeys" = "清除所有 API 密钥";
+"ClearKeysTitle" = "清除所有 API 密钥？";
+"ClearKeysMessage" = "这将永久删除所有已存储的 API 密钥。此操作无法撤销。";
+"ClearKeys" = "清除";
+"Cancel" = "取消";
