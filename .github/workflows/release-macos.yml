@@ -7,6 +7,11 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to publish (e.g., v0.1.1)"
+        required: true
+        type: string
 
 jobs:
   build-and-release:
@@ -27,6 +32,21 @@ jobs:
           system_profiler SPSoftwareDataType || true
           cd LLMKeyring
           xcodebuild -list -project LLMKeyring.xcodeproj
+
+      - name: Determine tag
+        id: determine_tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "${{ github.event_name }}" in
+            push)
+              echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT" ;;
+            release)
+              echo "tag=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT" ;;
+            workflow_dispatch)
+              echo "tag=${{ github.event.inputs.tag }}" >> "$GITHUB_OUTPUT" ;;
+            *) echo "Unsupported event: ${{ github.event_name }}" >&2; exit 1 ;;
+          esac
 
       - name: Build app (no signing)
         run: |
@@ -80,6 +100,7 @@ jobs:
       - name: Publish Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.determine_tag.outputs.tag }}
           files: |
             LLMKeyring/LLMKeyring.dmg
             LLMKeyring/LLMKeyring.app.zip
