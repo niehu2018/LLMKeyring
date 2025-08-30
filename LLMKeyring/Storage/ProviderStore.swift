@@ -266,6 +266,39 @@ final class ProviderStore: ObservableObject {
             extraHeaders: [:]
         ))
 
+        // Zhipu GLM (native)
+        defaults.append(Provider(
+            name: NSLocalizedString("KindZhipuGLM", comment: "Zhipu GLM"),
+            kind: .zhipuGLMNative,
+            baseURL: "https://open.bigmodel.cn/api/paas/v4",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: [:]
+        ))
+
+        // Baidu Qianfan (native)
+        defaults.append(Provider(
+            name: NSLocalizedString("KindBaiduQianfan", comment: "Baidu Qianfan"),
+            kind: .baiduQianfan,
+            baseURL: "https://aip.baidubce.com",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: [:]
+        ))
+
+        // Vertex AI Gemini
+        defaults.append(Provider(
+            name: NSLocalizedString("KindVertexGemini", comment: "Vertex AI Gemini"),
+            kind: .vertexGemini,
+            baseURL: "https://us-central1-aiplatform.googleapis.com/v1/projects/YOUR_PROJECT/locations/us-central1",
+            defaultModel: nil,
+            enabled: true,
+            auth: .bearer(keyRef: "prov_\(UUID().uuidString)"),
+            extraHeaders: [:]
+        ))
+
         self.providers = defaults
         self.defaultProviderID = defaults.first?.id
     }

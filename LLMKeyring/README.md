@@ -64,13 +64,16 @@ If you pulled an older revision with name "LLMManager", run `bash LLMManager/scr
  - SiliconFlow (CN): `https://api.siliconflow.cn`
  - Ollama (local): `http://127.0.0.1:11434` (use IPv4 to avoid ::1 issues)
  - Anthropic (Claude): `https://api.anthropic.com`
- - Google Gemini: `https://generativelanguage.googleapis.com`
- - Azure OpenAI: `https://<resource>.openai.azure.com`
- - OpenRouter: `https://openrouter.ai/api`
- - Together AI: `https://api.together.xyz`
- - Mistral: `https://api.mistral.ai`
- - Groq (OpenAI path): `https://api.groq.com/openai`
- - Fireworks AI: `https://api.fireworks.ai/inference`
+  - Google Gemini: `https://generativelanguage.googleapis.com`
+  - Azure OpenAI: `https://<resource>.openai.azure.com`
+  - OpenRouter: `https://openrouter.ai/api`
+  - Together AI: `https://api.together.xyz`
+  - Mistral: `https://api.mistral.ai`
+  - Groq (OpenAI path): `https://api.groq.com/openai`
+  - Fireworks AI: `https://api.fireworks.ai/inference`
+  - Zhipu GLM (native): `https://open.bigmodel.cn/api/paas/v4`
+  - Baidu Qianfan (native): `https://aip.baidubce.com`
+  - Vertex AI Gemini: `https://<region>-aiplatform.googleapis.com/v1/projects/<PROJECT>/locations/<REGION>`
 
 OpenAI-compatible adapter auto-normalizes the path:
 - If you include `/v1`, it requests `/v1/models`.
@@ -84,6 +87,15 @@ Google Gemini adapter appends API key as query parameter:
 
 Azure OpenAI adapter lists deployments:
 - `GET /openai/deployments?api-version=2023-05-15` with header `api-key: <key>`.
+
+Zhipu GLM (native):
+- `GET /api/paas/v4/models` with `Authorization: Bearer <key>`.
+
+Baidu Qianfan (native):
+- Expects an access token stored as your API key; we call `GET /rpc/2.0/ai_custom/v1/wenxinworkshop/models?access_token=<token>`.
+
+Vertex AI Gemini:
+- Expects base to include `/v1/projects/<project>/locations/<region>` and a Bearer OAuth token (from `gcloud auth print-access-token` or service account). Lists `publishers/google/models`.
 
 ## Roadmap (next)
 - Model listing and capability tagging (tools/vision/etc.)

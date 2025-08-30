@@ -117,9 +117,20 @@
 "TemplateMistral" = "Mistral";
 "TemplateGroq" = "Groq";
 "TemplateFireworks" = "Fireworks AI";
+"TemplateVertexGemini" = "Vertex AI Gemini";
 "ProviderNameAzureOpenAI" = "Azure OpenAI";
 "ProviderNameOpenRouter" = "OpenRouter";
 "ProviderNameTogether" = "Together AI";
 "ProviderNameMistral" = "Mistral";
 "ProviderNameGroq" = "Groq";
 "ProviderNameFireworks" = "Fireworks AI";
+
+/* 原生适配器与 Vertex */
+"KindZhipuGLM" = "智谱 GLM（原生）";
+"KindBaiduQianfan" = "百度千帆（原生）";
+"KindVertexGemini" = "Vertex AI Gemini";
+"ERR_ROUTE_HINT_ZHIPU" = "路由错误，使用 https://open.bigmodel.cn/api/paas/v4（我们会补 /models）";
+"ERR_ROUTE_HINT_BAIDU" = "路由错误，Base 应为 https://aip.baidubce.com";
+"ERR_BAIDU_TOKEN_HINT" = "请在 Keychain 中保存 access_token，并将 Base URL 设置为 https://aip.baidubce.com";
+"ERR_VERTEX_BASE_HINT" = "Base 需包含 /v1/projects/{project}/locations/{region}";
+"ERR_VERTEX_AUTH_HINT" = "请提供 OAuth 访问令牌（gcloud 或服务账号）";
