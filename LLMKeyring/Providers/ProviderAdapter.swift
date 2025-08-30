@@ -13,24 +13,12 @@ protocol ProviderAdapter {
 enum AdapterFactory {
     static func make(for provider: Provider) -> ProviderAdapter {
         switch provider.kind {
-        case .openAICompatible:
+        case .openAICompatible, .anthropic, .googleGemini, .azureOpenAI, .zhipuGLMNative, .baiduQianfan, .vertexGemini:
             return OpenAICompatibleAdapter()
         case .ollama:
             return OllamaAdapter()
         case .aliyunNative:
             return AliyunDashScopeAdapter()
-        case .anthropic:
-            return AnthropicAdapter()
-        case .googleGemini:
-            return GoogleGeminiAdapter()
-        case .azureOpenAI:
-            return AzureOpenAIAdapter()
-        case .zhipuGLMNative:
-            return ZhipuGLMNativeAdapter()
-        case .baiduQianfan:
-            return BaiduQianfanAdapter()
-        case .vertexGemini:
-            return VertexGeminiAdapter()
         }
     }
 }
