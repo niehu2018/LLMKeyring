@@ -1,5 +1,7 @@
 # LLMKeyring
 
+[![下载最新版本](https://img.shields.io/github/v/release/niehu2018/LLMKeyring?label=%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC)](https://github.com/niehu2018/LLMKeyring/releases/latest)
+
 简单、方便、免费、开源的 macOS 大模型（LLM）密钥管理工具。把常用提供商与密钥集中放在一处，安全保存在 Keychain，一键测试与切换，开箱即用。
 
 为什么好用
