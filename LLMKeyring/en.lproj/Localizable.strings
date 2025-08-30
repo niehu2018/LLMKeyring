@@ -46,12 +46,16 @@
 "TemplateKimi" = "Kimi (Moonshot)";
 "TemplateSiliconFlow" = "SiliconFlow";
 "TemplateAliyunNative" = "Aliyun (DashScope Native)";
+"TemplateAnthropic" = "Anthropic";
+"TemplateGoogleGemini" = "Google Gemini";
 "BlankProvider" = "New Provider";
 
 "ProviderNameDeepSeek" = "DeepSeek";
 "ProviderNameKimi" = "Kimi (Moonshot)";
 "ProviderNameSiliconFlow" = "SiliconFlow";
 "ProviderNameAliyunNative" = "Aliyun (DashScope Native)";
+"ProviderNameAnthropic" = "Anthropic";
+"ProviderNameGoogleGemini" = "Google Gemini";
 
 /* Kinds */
 "KindOpenAICompatible" = "OpenAI-Compatible";
