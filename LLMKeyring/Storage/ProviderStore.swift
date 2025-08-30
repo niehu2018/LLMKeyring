@@ -37,6 +37,10 @@ final class ProviderStore: ObservableObject {
             try? KeychainService.shared.delete(account: keyRef)
         }
     }
+    
+    func moveProviders(from source: IndexSet, to destination: Int) {
+        providers.move(fromOffsets: source, toOffset: destination)
+    }
 
     func setDefault(_ provider: Provider?) {
         defaultProviderID = provider?.id
@@ -157,6 +161,28 @@ final class ProviderStore: ObservableObject {
             name: NSLocalizedString("ProviderNameSiliconFlow", comment: "SiliconFlow"),
             kind: .openAICompatible,
             baseURL: "https://api.siliconflow.cn",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: [:]
+        ))
+
+        // Anthropic (Claude)
+        defaults.append(Provider(
+            name: NSLocalizedString("ProviderNameAnthropic", comment: "Anthropic"),
+            kind: .anthropic,
+            baseURL: "https://api.anthropic.com",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: [:]
+        ))
+
+        // Google Gemini
+        defaults.append(Provider(
+            name: NSLocalizedString("ProviderNameGoogleGemini", comment: "Google Gemini"),
+            kind: .googleGemini,
+            baseURL: "https://generativelanguage.googleapis.com",
             defaultModel: nil,
             enabled: true,
             auth: .none,

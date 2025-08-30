@@ -32,6 +32,8 @@ struct ContentView: View {
                     Button(NSLocalizedString("TemplateKimi", comment: "Kimi")) { addTemplate(.kimi) }
                     Button(NSLocalizedString("TemplateAliyunNative", comment: "Aliyun native")) { addTemplate(.aliyunNative) }
                     Button(NSLocalizedString("TemplateSiliconFlow", comment: "SiliconFlow")) { addTemplate(.siliconflow) }
+                    Button(NSLocalizedString("TemplateAnthropic", comment: "Anthropic")) { addTemplate(.anthropic) }
+                    Button(NSLocalizedString("TemplateGoogleGemini", comment: "Google Gemini")) { addTemplate(.googleGemini) }
                     Divider()
                     Button(NSLocalizedString("BlankProvider", comment: "Blank")) { addTemplate(.blank) }
                 } label: {
@@ -44,7 +46,7 @@ struct ContentView: View {
         .navigationTitle("提供商管理")
     }
 
-    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, blank }
+    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, blank }
 
     private func addTemplate(_ t: Template) {
         let p: Provider
@@ -57,6 +59,10 @@ struct ContentView: View {
             p = Provider(name: NSLocalizedString("ProviderNameAliyunNative", comment: "Aliyun native"), kind: .aliyunNative, baseURL: "https://dashscope.aliyuncs.com/api/v1", defaultModel: nil, enabled: true, auth: .bearer(keyRef: "prov_\(UUID().uuidString)"))
         case .siliconflow:
             p = Provider(name: NSLocalizedString("ProviderNameSiliconFlow", comment: "SiliconFlow"), kind: .openAICompatible, baseURL: "https://api.siliconflow.cn", defaultModel: nil, enabled: true, auth: .none)
+        case .anthropic:
+            p = Provider(name: NSLocalizedString("ProviderNameAnthropic", comment: "Anthropic"), kind: .anthropic, baseURL: "https://api.anthropic.com", defaultModel: nil, enabled: true, auth: .none)
+        case .googleGemini:
+            p = Provider(name: NSLocalizedString("ProviderNameGoogleGemini", comment: "Google Gemini"), kind: .googleGemini, baseURL: "https://generativelanguage.googleapis.com", defaultModel: nil, enabled: true, auth: .none)
         case .blank:
             p = Provider(name: NSLocalizedString("BlankProvider", comment: "Blank"), kind: .openAICompatible, baseURL: "https://", defaultModel: nil, enabled: true, auth: .none)
         }
@@ -99,7 +105,12 @@ struct ProviderListView: View {
                 }
                 .tag(SidebarItem.provider(p.id))
             }
+            .onMove(perform: moveProviders)
         }
+    }
+    
+    private func moveProviders(from source: IndexSet, to destination: Int) {
+        store.moveProviders(from: source, to: destination)
     }
 }
 }
