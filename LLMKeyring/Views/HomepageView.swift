@@ -61,6 +61,7 @@ struct HomepageView: View {
                         }
                     }
                 }
+                .onMove(perform: moveProviders)
             }
         }
         .padding()
@@ -111,5 +112,9 @@ struct HomepageView: View {
         pb.setString(text, forType: .string)
         self.message = message
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { self.message = nil }
+    }
+    
+    private func moveProviders(from source: IndexSet, to destination: Int) {
+        store.moveProviders(from: source, to: destination)
     }
 }

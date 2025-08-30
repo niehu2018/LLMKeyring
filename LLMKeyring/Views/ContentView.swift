@@ -34,6 +34,9 @@ struct ContentView: View {
                     Button(NSLocalizedString("TemplateSiliconFlow", comment: "SiliconFlow")) { addTemplate(.siliconflow) }
                     Button(NSLocalizedString("TemplateAnthropic", comment: "Anthropic")) { addTemplate(.anthropic) }
                     Button(NSLocalizedString("TemplateGoogleGemini", comment: "Google Gemini")) { addTemplate(.googleGemini) }
+                    Button(NSLocalizedString("TemplateAzureOpenAI", comment: "Azure OpenAI")) { addTemplate(.azureOpenAI) }
+                    Button(NSLocalizedString("TemplateOpenRouter", comment: "OpenRouter")) { addTemplate(.openRouter) }
+                    Button(NSLocalizedString("TemplateTogether", comment: "Together AI")) { addTemplate(.together) }
                     Divider()
                     Button(NSLocalizedString("BlankProvider", comment: "Blank")) { addTemplate(.blank) }
                 } label: {
@@ -46,7 +49,7 @@ struct ContentView: View {
         .navigationTitle("提供商管理")
     }
 
-    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, blank }
+    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, azureOpenAI, openRouter, together, blank }
 
     private func addTemplate(_ t: Template) {
         let p: Provider
@@ -63,6 +66,12 @@ struct ContentView: View {
             p = Provider(name: NSLocalizedString("ProviderNameAnthropic", comment: "Anthropic"), kind: .anthropic, baseURL: "https://api.anthropic.com", defaultModel: nil, enabled: true, auth: .none)
         case .googleGemini:
             p = Provider(name: NSLocalizedString("ProviderNameGoogleGemini", comment: "Google Gemini"), kind: .googleGemini, baseURL: "https://generativelanguage.googleapis.com", defaultModel: nil, enabled: true, auth: .none)
+        case .azureOpenAI:
+            p = Provider(name: NSLocalizedString("ProviderNameAzureOpenAI", comment: "Azure OpenAI"), kind: .azureOpenAI, baseURL: "https://YOUR_RESOURCE_NAME.openai.azure.com", defaultModel: nil, enabled: true, auth: .bearer(keyRef: "prov_\(UUID().uuidString)"))
+        case .openRouter:
+            p = Provider(name: NSLocalizedString("ProviderNameOpenRouter", comment: "OpenRouter"), kind: .openAICompatible, baseURL: "https://openrouter.ai/api", defaultModel: nil, enabled: true, auth: .none)
+        case .together:
+            p = Provider(name: NSLocalizedString("ProviderNameTogether", comment: "Together AI"), kind: .openAICompatible, baseURL: "https://api.together.xyz", defaultModel: nil, enabled: true, auth: .none)
         case .blank:
             p = Provider(name: NSLocalizedString("BlankProvider", comment: "Blank"), kind: .openAICompatible, baseURL: "https://", defaultModel: nil, enabled: true, auth: .none)
         }

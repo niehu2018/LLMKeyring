@@ -61,10 +61,13 @@ If you pulled an older revision with name "LLMManager", run `bash LLMManager/scr
 - DeepSeek: `https://api.deepseek.com`
 - Kimi (Moonshot): `https://api.moonshot.cn`
 - Aliyun (DashScope compatible mode, China): `https://dashscope.aliyuncs.com/compatible-mode`
-- SiliconFlow (CN): `https://api.siliconflow.cn`
-- Ollama (local): `http://127.0.0.1:11434` (use IPv4 to avoid ::1 issues)
+ - SiliconFlow (CN): `https://api.siliconflow.cn`
+ - Ollama (local): `http://127.0.0.1:11434` (use IPv4 to avoid ::1 issues)
  - Anthropic (Claude): `https://api.anthropic.com`
  - Google Gemini: `https://generativelanguage.googleapis.com`
+ - Azure OpenAI: `https://<resource>.openai.azure.com`
+ - OpenRouter: `https://openrouter.ai/api`
+ - Together AI: `https://api.together.xyz`
 
 OpenAI-compatible adapter auto-normalizes the path:
 - If you include `/v1`, it requests `/v1/models`.
@@ -75,6 +78,9 @@ Anthropic adapter expects headers:
 
 Google Gemini adapter appends API key as query parameter:
 - `GET /v1/models?key=<key>`.
+
+Azure OpenAI adapter lists deployments:
+- `GET /openai/deployments?api-version=2023-05-15` with header `api-key: <key>`.
 
 ## Roadmap (next)
 - Model listing and capability tagging (tools/vision/etc.)

@@ -107,3 +107,13 @@
 "CopyBaseURL" = "Copy Base URL";
 "APIKeyCopied" = "API Key Copied";
 "BaseURLCopied" = "Base URL Copied";
+
+/* Additional Kinds and Templates */
+"KindAzureOpenAI" = "Azure OpenAI";
+"ERR_ROUTE_HINT_AZURE" = "Route error. Base should be https://<resource>.openai.azure.com (no /v1).";
+"TemplateAzureOpenAI" = "Azure OpenAI";
+"TemplateOpenRouter" = "OpenRouter";
+"TemplateTogether" = "Together AI";
+"ProviderNameAzureOpenAI" = "Azure OpenAI";
+"ProviderNameOpenRouter" = "OpenRouter";
+"ProviderNameTogether" = "Together AI";

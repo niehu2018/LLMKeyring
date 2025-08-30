@@ -23,6 +23,8 @@ enum AdapterFactory {
             return AnthropicAdapter()
         case .googleGemini:
             return GoogleGeminiAdapter()
+        case .azureOpenAI:
+            return AzureOpenAIAdapter()
         }
     }
 }
