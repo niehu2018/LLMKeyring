@@ -233,6 +233,39 @@ final class ProviderStore: ObservableObject {
             extraHeaders: [:]
         ))
 
+        // Mistral (OpenAI-compatible)
+        defaults.append(Provider(
+            name: NSLocalizedString("ProviderNameMistral", comment: "Mistral"),
+            kind: .openAICompatible,
+            baseURL: "https://api.mistral.ai",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: [:]
+        ))
+
+        // Groq (OpenAI-compatible path)
+        defaults.append(Provider(
+            name: NSLocalizedString("ProviderNameGroq", comment: "Groq"),
+            kind: .openAICompatible,
+            baseURL: "https://api.groq.com/openai",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: [:]
+        ))
+
+        // Fireworks AI (OpenAI-compatible)
+        defaults.append(Provider(
+            name: NSLocalizedString("ProviderNameFireworks", comment: "Fireworks AI"),
+            kind: .openAICompatible,
+            baseURL: "https://api.fireworks.ai/inference",
+            defaultModel: nil,
+            enabled: true,
+            auth: .none,
+            extraHeaders: [:]
+        ))
+
         self.providers = defaults
         self.defaultProviderID = defaults.first?.id
     }
