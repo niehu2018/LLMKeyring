@@ -1,37 +1,31 @@
 # LLMKeyring
 
-一款轻量的 macOS SwiftUI 菜单栏应用，用于管理多家大模型（LLM）提供商与 API Key。支持将密钥安全存入 macOS Keychain，快速切换默认提供商，并通过内置健康检查验证连通性。
+简单、方便、免费、开源的 macOS 大模型（LLM）密钥管理工具。把常用提供商与密钥集中放在一处，安全保存在 Keychain，一键测试与切换，开箱即用。
 
-- 平台：macOS 13+
-- 技术栈：SwiftUI、Keychain、Xcode 工程
-- 提供商：OpenAI 兼容（Kimi/Moonshot、SiliconFlow、OpenRouter、Together、Mistral、Groq、Fireworks）、阿里云（原生 + 兼容模式）、Anthropic、Google Gemini、Azure OpenAI、智谱 GLM（原生）、百度千帆（原生）、Vertex AI Gemini
+为什么好用
+- 简单：菜单栏小工具，添加、保存、测试，几步到位。
+- 方便：所有提供商的 Base URL 与 API Key 统一管理。
+- 免费开源：无订阅、无遥测，随时自建自用。
+- 注重隐私：密钥只存本机 Keychain，不上传、不记录日志。
 
-## 快速开始
-- Xcode：打开 `LLMKeyring/LLMKeyring.xcodeproj`，运行 `LLMKeyring` scheme。
-- 命令行：
-  - `cd LLMKeyring`
-  - 无签名构建并运行：`bash scripts/build_and_run.sh`
-  - 自动签名构建：`TEAM_ID=YOURTEAMID bash scripts/build_and_run.sh`
-- Gatekeeper：若被阻止，请在 系统设置 > 隐私与安全 中“仍要打开”。
+主要功能
+- 多家提供商：OpenAI 兼容（Kimi/Moonshot、SiliconFlow、OpenRouter、Together、Mistral、Groq、Fireworks）、阿里云（原生/兼容）、Anthropic、Google Gemini、Azure OpenAI、智谱 GLM（原生）、百度千帆（原生）、Vertex AI Gemini。
+- 一键健康检查：快速验证连通性与可用性。
+- 智能助手：Normalize / Detect / Switch Mode 自动修正常见 Base URL 问题（如阿里云原生↔兼容、Kimi .cn）。
+- 双语界面：简体中文与英文切换。
 
-## 使用说明
-- 通过“+”菜单新增提供商（已内置常见模板）。
-- 输入 Base URL 与 API Key 后点击保存。密钥仅存入 Keychain。
-- 在 Base URL 下方使用 Normalize / Detect / Switch Mode：
-  - Normalize：按推荐规范修正地址（如 Aliyun、Kimi、Groq 等）。
-  - Detect：根据域名自动识别类型与推荐 Base。
-  - Switch Mode：一键切换阿里云原生/兼容模式。
-- 点击“测试”运行健康检查（如 `/v1/models` 或原生模型列表）。
+开始使用（约 2 分钟）
+- 下载：在 GitHub Releases 下载最新版本。若被系统拦截，在“系统设置 > 隐私与安全”允许打开。
+- 新增提供商：点击“+”，选择模板，粘贴 Base URL 与 API Key 并保存。
+- 测试与切换：点击“测试”验证，菜单中可设为默认提供商。
 
-## 安全
-- API Key 仅存于 Keychain（`service: LLMKeyring`，`account: prov_<uuid>`），不导出、不写日志。
+隐私与安全
+- API Key 仅存于本机 Keychain（`service: LLMKeyring`，`account: prov_<uuid>`），不导出、不记录、不做额外网络请求。
 
+参与贡献
+- 欢迎提 Issue/PR。规范见 `AGENTS.md`。更新 UI 时请同步维护中英文文案。
 
-## 贡献
-- 请阅读 `AGENTS.md` 获取贡献规范、命令与 PR 要求。
-- 本项目要求：任何 UI 变更需同时更新 `en.lproj/Localizable.strings` 与 `zh-Hans.lproj/Localizable.strings`。
-
-## 许可证
+许可证
 - MIT — 详见 `LICENSE`。
 
 English README: `README.md`

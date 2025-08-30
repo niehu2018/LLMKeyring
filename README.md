@@ -1,34 +1,31 @@
 # LLMKeyring
 
-A lightweight macOS SwiftUI menu bar app to manage multiple LLM providers and API keys. Store secrets securely in macOS Keychain, switch providers quickly, and verify connectivity with built‑in health checks.
+Simple, convenient, free, and open‑source key manager for LLM APIs on macOS. Add your favorite providers once, keep keys safe in Keychain, and switch or test with a single click — no fuss.
 
-- Platforms: macOS 13+
-- Tech: SwiftUI, Keychain, Xcode project
- - Providers: OpenAI‑compatible (Kimi/Moonshot, SiliconFlow, OpenRouter, Together, Mistral, Groq, Fireworks), Aliyun (native + compatible), Anthropic, Google Gemini, Azure OpenAI, Zhipu GLM (native), Baidu Qianfan (native), Vertex AI Gemini
+Why you’ll like it
+- Simple: clean menu bar app — add, save, test, done.
+- Convenient: one place for all LLM provider keys and base URLs.
+- Free & open‑source: no subscriptions, no telemetry.
+- Private by design: keys stay in your local macOS Keychain.
 
-## Quick Start
-- Xcode: open `LLMKeyring/LLMKeyring.xcodeproj` and run the `LLMKeyring` scheme.
-- CLI:
-  - `cd LLMKeyring`
-  - Build/run without signing: `bash scripts/build_and_run.sh`
-  - With automatic signing: `TEAM_ID=YOURTEAMID bash scripts/build_and_run.sh`
-- Gatekeeper: if blocked, allow from System Settings > Privacy & Security > Open Anyway.
+Key features
+- Multi‑provider support: OpenAI‑compatible services (Kimi/Moonshot, SiliconFlow, OpenRouter, Together, Mistral, Groq, Fireworks), Aliyun (native/compatible), Anthropic, Google Gemini, Azure OpenAI, Zhipu GLM (native), Baidu Qianfan (native), Vertex AI Gemini.
+- One‑click health check: quickly validate connectivity per provider.
+- Smart helpers: Normalize / Detect / Switch Mode fix common base‑URL issues (e.g., Aliyun native ↔ compatible, Kimi .cn).
+- Bilingual UI: English and Simplified Chinese.
 
-## Using The App
-- Add a provider via the “+” menu (templates included for major vendors).
-- Enter Base URL and API Key, then click Save. Keys are stored in Keychain only.
-- Use Normalize/Detect/Switch Mode under Base URL to fix paths, auto‑detect type, or toggle Aliyun native/compatible.
-- Click “Test” to run a health check (e.g., `/v1/models` or native model list).
+Get started (2 minutes)
+- Download: grab the latest release on GitHub (Releases tab). If macOS blocks it, allow from System Settings > Privacy & Security.
+- Add a provider: click “+”, pick a template, paste Base URL & API key, Save.
+- Test & switch: click “Test” to verify; set default provider from the menu.
 
-## Security
-- Keys are stored in macOS Keychain (`service: LLMKeyring`, `account: prov_<uuid>`). No export, no logs.
+Privacy & security
+- Keys are stored only in macOS Keychain (`service: LLMKeyring`, `account: prov_<uuid>`). No export, no logs, no background network calls.
 
+Contribute
+- Issues and PRs welcome. See `AGENTS.md` for quick guidelines. UI changes should update both English and Chinese strings.
 
-## Contributing
-- See `AGENTS.md` for guidelines, commands, and PR requirements.
-- Localization: every UI change must update both `en.lproj/Localizable.strings` and `zh-Hans.lproj/Localizable.strings`.
-
-## License
+License
 - MIT — see `LICENSE` for details.
 
 中文说明见：`README_CN.md`
