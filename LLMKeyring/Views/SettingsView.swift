@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AppSettingsView: View {
     @AppStorage("appLanguage") private var appLanguage: String = "system"
+    @Environment(\.locale) private var locale
 
     var body: some View {
         Form {
@@ -19,5 +20,6 @@ struct AppSettingsView: View {
         }
         .padding(20)
         .frame(width: 420)
+        .id(locale)
     }
 }

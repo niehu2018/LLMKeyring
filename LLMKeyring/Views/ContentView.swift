@@ -8,6 +8,7 @@ enum SidebarItem: Hashable {
 struct ContentView: View {
     @EnvironmentObject var store: ProviderStore
     @State private var selection: SidebarItem? = .homepage
+    @Environment(\.locale) private var locale
 
     var body: some View {
         NavigationSplitView {
@@ -51,6 +52,7 @@ struct ContentView: View {
             }
         }
         .navigationTitle(NSLocalizedString("ProviderManagement", comment: "Provider Management"))
+        .id(locale)
     }
 
     private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, vertexGemini, azureOpenAI, openRouter, together, mistral, groq, fireworks, zhipuGLM, baiduQianfan, blank }

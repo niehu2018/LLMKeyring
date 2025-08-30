@@ -7,6 +7,7 @@ struct ProviderDetailView: View {
     @State private var showingKeySaved = false
     @State private var testing = false
     @FocusState private var keyFieldFocused: Bool
+    @Environment(\.locale) private var locale
 
     var body: some View {
         ScrollView {
@@ -251,6 +252,7 @@ struct ProviderDetailView: View {
             }
         }
         .navigationTitle("")
+        .id(locale)
     }
 
     private var hasKey: Bool {
