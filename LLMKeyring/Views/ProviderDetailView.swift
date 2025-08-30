@@ -60,16 +60,56 @@ struct ProviderDetailView: View {
                         
                         // Base URL
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("Base URL")
+                            Text(NSLocalizedString("BaseURL", comment: "Base URL"))
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                             TextField("https://api.example.com", text: $provider.baseURL)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .font(.system(.body, design: .monospaced))
+                            HStack(spacing: 8) {
+                                Button {
+                                    let newBase = BaseURLHelper.normalizedBase(for: provider.kind, base: provider.baseURL)
+                                    if newBase != provider.baseURL {
+                                        provider.baseURL = newBase
+                                        store.update(provider)
+                                    }
+                                } label: {
+                                    Label("Normalize", systemImage: "wand.and.stars")
+                                }
+                                if let alt = BaseURLHelper.alternateKindAndBase(for: provider) {
+                                    Button {
+                                        var p = provider
+                                        p.kind = alt.0
+                                        p.baseURL = alt.1
+                                        provider = p
+                                        store.update(p)
+                                    } label: {
+                                        Label("Switch Mode", systemImage: "arrow.triangle.2.circlepath")
+                                    }.help(alt.0.displayName)
+                                }
+                                Button {
+                                    if let suggestion = BaseURLHelper.detectionSuggestion(for: provider.baseURL) {
+                                        var p = provider
+                                        p.kind = suggestion.0
+                                        p.baseURL = suggestion.1
+                                        provider = p
+                                        store.update(p)
+                                    }
+                                } label: {
+                                    Label("Detect", systemImage: "scope")
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                            .controlSize(.small)
                             if provider.kind == .openAICompatible && provider.baseURL.contains("aliyuncs.com") {
                                 Text(NSLocalizedString("HintAliyunBaseURL", comment: "Aliyun base URL hint"))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
+                            }
+                            if provider.baseURL.contains("moonshot.ai") {
+                                Text("Tip: use https://api.moonshot.cn for Kimi")
+                                    .font(.caption)
+                                    .foregroundColor(.orange)
                             }
                         }
                         .padding(.horizontal, 20)

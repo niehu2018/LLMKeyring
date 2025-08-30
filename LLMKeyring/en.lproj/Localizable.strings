@@ -108,6 +108,20 @@
 "APIKeyCopied" = "API Key Copied";
 "BaseURLCopied" = "Base URL Copied";
 
+/* Toolbar Actions */
+"New" = "New";
+"Delete" = "Delete";
+"ProviderManagement" = "Provider Management";
+
+/* Configuration Fields */
+"BaseURL" = "Base URL";
+
+/* MenuBar Text */
+"NoDefaultProvider" = "No default provider set";
+"SwitchDefaultProvider" = "Switch Default Provider";
+"OpenManager" = "Open Manager";
+"TestDefaultProvider" = "Test Default Provider";
+
 /* Additional Kinds and Templates */
 "KindAzureOpenAI" = "Azure OpenAI";
 "ERR_ROUTE_HINT_AZURE" = "Route error. Base should be https://<resource>.openai.azure.com (no /v1).";
@@ -134,3 +148,8 @@
 "ERR_BAIDU_TOKEN_HINT" = "Provide access_token in Keychain and set Base URL to https://aip.baidubce.com";
 "ERR_VERTEX_BASE_HINT" = "Base should include /v1/projects/{project}/locations/{region}";
 "ERR_VERTEX_AUTH_HINT" = "Provide an OAuth access token (gcloud or service account)";
+
+/* Settings */
+"LanguageSection" = "Language";
+"FollowSystem" = "Follow System";
+"LanguageChangeHint" = "The interface will update immediately after changing the language.";

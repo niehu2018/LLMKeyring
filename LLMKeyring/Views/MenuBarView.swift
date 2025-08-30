@@ -14,12 +14,12 @@ struct MenuBarView: View {
                 }
                 Text(current.baseURL).font(.caption).foregroundColor(.secondary)
             } else {
-                Text("未设置默认提供商").foregroundColor(.secondary)
+                Text(NSLocalizedString("NoDefaultProvider", comment: "No default provider")).foregroundColor(.secondary)
             }
 
             Divider()
 
-            Menu("切换默认提供商") {
+            Menu(NSLocalizedString("SwitchDefaultProvider", comment: "Switch Default Provider")) {
                 ForEach(store.providers) { p in
                     Button(action: { store.setDefault(p) }) {
                         if store.defaultProviderID == p.id { Image(systemName: "checkmark") }
@@ -31,13 +31,13 @@ struct MenuBarView: View {
             Button {
                 openWindow(id: "manager")
             } label: {
-                Label("打开管理器", systemImage: "gearshape")
+                Label(NSLocalizedString("OpenManager", comment: "Open Manager"), systemImage: "gearshape")
             }
 
             Button {
                 Task { await testDefault() }
             } label: {
-                if isTesting { ProgressView() } else { Label("测试默认提供商", systemImage: "bolt") }
+                if isTesting { ProgressView() } else { Label(NSLocalizedString("TestDefaultProvider", comment: "Test Default Provider"), systemImage: "bolt") }
             }.disabled(store.defaultProviderID == nil || isTesting)
         }
         .padding(12)

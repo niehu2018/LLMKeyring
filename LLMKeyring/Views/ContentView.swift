@@ -44,13 +44,13 @@ struct ContentView: View {
                     Divider()
                     Button(NSLocalizedString("BlankProvider", comment: "Blank")) { addTemplate(.blank) }
                 } label: {
-                    Label("新增", systemImage: "plus")
+                    Label(NSLocalizedString("New", comment: "New"), systemImage: "plus")
                 }
-                Button(action: deleteSelected) { Label("删除", systemImage: "trash") }
+                Button(action: deleteSelected) { Label(NSLocalizedString("Delete", comment: "Delete"), systemImage: "trash") }
                     .disabled(!isProviderSelected)
             }
         }
-        .navigationTitle("提供商管理")
+        .navigationTitle(NSLocalizedString("ProviderManagement", comment: "Provider Management"))
     }
 
     private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, vertexGemini, azureOpenAI, openRouter, together, mistral, groq, fireworks, zhipuGLM, baiduQianfan, blank }
