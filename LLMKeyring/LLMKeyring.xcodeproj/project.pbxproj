@@ -26,6 +26,12 @@
         100000013 /* AliyunDashScopeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000061 /* AliyunDashScopeAdapter.swift */; };
         100000014 /* BaseURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000051 /* BaseURLHelper.swift */; };
         100000015 /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000052 /* LocalizationHelper.swift */; };
+        100000016 /* AnthropicAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000062 /* AnthropicAdapter.swift */; };
+        100000017 /* GoogleGeminiAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000063 /* GoogleGeminiAdapter.swift */; };
+        100000018 /* AzureOpenAIAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000064 /* AzureOpenAIAdapter.swift */; };
+        100000019 /* ZhipuGLMNativeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000065 /* ZhipuGLMNativeAdapter.swift */; };
+        10000001A /* BaiduQianfanAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000066 /* BaiduQianfanAdapter.swift */; };
+        10000001B /* VertexGeminiAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000067 /* VertexGeminiAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +58,12 @@
         200000052 /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/LocalizationHelper.swift; sourceTree = "<group>"; };
         200000060 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HomepageView.swift; sourceTree = "<group>"; };
         200000061 /* AliyunDashScopeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/AliyunDashScopeAdapter.swift; sourceTree = "<group>"; };
+        200000062 /* AnthropicAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/AnthropicAdapter.swift; sourceTree = "<group>"; };
+        200000063 /* GoogleGeminiAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/GoogleGeminiAdapter.swift; sourceTree = "<group>"; };
+        200000064 /* AzureOpenAIAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/AzureOpenAIAdapter.swift; sourceTree = "<group>"; };
+        200000065 /* ZhipuGLMNativeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/ZhipuGLMNativeAdapter.swift; sourceTree = "<group>"; };
+        200000066 /* BaiduQianfanAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/BaiduQianfanAdapter.swift; sourceTree = "<group>"; };
+        200000067 /* VertexGeminiAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/VertexGeminiAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +101,12 @@
                 200000006 /* ProviderAdapter.swift */,
                 200000007 /* OpenAICompatibleAdapter.swift */,
                 200000061 /* AliyunDashScopeAdapter.swift */,
+                200000062 /* AnthropicAdapter.swift */,
+                200000063 /* GoogleGeminiAdapter.swift */,
+                200000064 /* AzureOpenAIAdapter.swift */,
+                200000065 /* ZhipuGLMNativeAdapter.swift */,
+                200000066 /* BaiduQianfanAdapter.swift */,
+                200000067 /* VertexGeminiAdapter.swift */,
                 200000009 /* ProviderStore.swift */,
                 200000013 /* Info.plist */,
                 200000030 /* Localizable.strings */,
@@ -181,6 +199,12 @@
                 10000000A /* OpenAICompatibleAdapter.swift in Sources */,
                 100000013 /* AliyunDashScopeAdapter.swift in Sources */,
                 10000000C /* ProviderStore.swift in Sources */,
+                100000016 /* AnthropicAdapter.swift in Sources */,
+                100000017 /* GoogleGeminiAdapter.swift in Sources */,
+                100000018 /* AzureOpenAIAdapter.swift in Sources */,
+                100000019 /* ZhipuGLMNativeAdapter.swift in Sources */,
+                10000001A /* BaiduQianfanAdapter.swift in Sources */,
+                10000001B /* VertexGeminiAdapter.swift in Sources */,
             );
             runOnlyForDeploymentPostprocessing = 0;
         };
