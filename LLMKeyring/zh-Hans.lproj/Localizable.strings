@@ -153,3 +153,9 @@
 "LanguageSection" = "语言";
 "FollowSystem" = "跟随系统";
 "LanguageChangeHint" = "更改语言后，界面将即时更新。";
+
+/* Base URL 辅助功能 */
+"Normalize" = "标准化";
+"SwitchMode" = "切换模式";
+"Detect" = "检测";
+"KimiURLTip" = "提示：请使用 https://api.moonshot.cn 访问 Kimi";

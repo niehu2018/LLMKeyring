@@ -138,7 +138,6 @@ struct ProviderListView: View {
         store.moveProviders(from: source, to: destination)
     }
 }
-}
 
 struct StatusDot: View {
     let status: TestStatus
