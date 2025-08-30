@@ -34,7 +34,6 @@ struct ContentView: View {
                     Button(NSLocalizedString("TemplateKimi", comment: "Kimi")) { addTemplate(.kimi) }
                     Button(NSLocalizedString("TemplateAliyunNative", comment: "Aliyun native")) { addTemplate(.aliyunNative) }
                     Button(NSLocalizedString("TemplateSiliconFlow", comment: "SiliconFlow")) { addTemplate(.siliconflow) }
-                    Button(NSLocalizedString("TemplateOllama", comment: "Ollama")) { addTemplate(.ollama) }
                     Divider()
                     Button(NSLocalizedString("BlankProvider", comment: "Blank")) { addTemplate(.blank) }
                 } label: {
@@ -68,7 +67,7 @@ struct ContentView: View {
         }
     }
 
-    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, ollama, blank }
+    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, blank }
 
     private func addTemplate(_ t: Template) {
         let p: Provider
@@ -81,8 +80,6 @@ struct ContentView: View {
             p = Provider(name: NSLocalizedString("ProviderNameAliyunNative", comment: "Aliyun native"), kind: .aliyunNative, baseURL: "https://dashscope.aliyuncs.com/api/v1", defaultModel: nil, enabled: true, auth: .bearer(keyRef: "prov_\(UUID().uuidString)"))
         case .siliconflow:
             p = Provider(name: NSLocalizedString("ProviderNameSiliconFlow", comment: "SiliconFlow"), kind: .openAICompatible, baseURL: "https://api.siliconflow.cn", defaultModel: nil, enabled: true, auth: .none)
-        case .ollama:
-            p = Provider(name: NSLocalizedString("ProviderNameOllama", comment: "Ollama"), kind: .ollama, baseURL: "http://127.0.0.1:11434", defaultModel: nil, enabled: true, auth: .none)
         case .blank:
             p = Provider(name: NSLocalizedString("BlankProvider", comment: "Blank"), kind: .openAICompatible, baseURL: "https://", defaultModel: nil, enabled: true, auth: .none)
         }

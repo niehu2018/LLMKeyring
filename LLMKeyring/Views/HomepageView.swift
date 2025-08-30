@@ -6,9 +6,6 @@ struct HomepageView: View {
     @State private var revealed: [UUID: String] = [:]
     @State private var message: String?
     var onOpenProvider: ((UUID) -> Void)? = nil
-    @State private var models: [UUID: [String]] = [:]
-    @State private var loading: Set<UUID> = []
-    @State private var modelErrors: [UUID: String] = [:]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -33,45 +30,34 @@ struct HomepageView: View {
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
+                        // First row: API key display with Reveal and Open buttons
                         HStack(spacing: 12) {
                             if let text = revealed[p.id] {
                                 Text(text).font(.system(.body, design: .monospaced))
-                                Button("Copy Key") { copy(text) }
                                 Button(NSLocalizedString("Hide", comment: "Hide")) { revealed[p.id] = nil }
                             } else {
                                 Text(maskedKey(for: p)).font(.system(.body, design: .monospaced))
                                 Button(NSLocalizedString("Reveal", comment: "Reveal")) { reveal(p) }
-                                Menu("Copy") {
-                                    Button("Copy API Key") { copyFromKeychain(p) }
-                                    Button("Copy Base URL") { copyBaseURL(p) }
-                                    Button("Copy Full URL") { copyFullURL(p) }
+                            }
+                            Spacer()
+                            Button(NSLocalizedString("Open", comment: "Open")) { onOpenProvider?(p.id) }
+                        }
+                        
+                        // Second row: Copy buttons
+                        HStack(spacing: 8) {
+                            Button("Copy API Key") { 
+                                if revealed[p.id] != nil {
+                                    copy(revealed[p.id]!, message: "API Key Copied")
+                                } else {
+                                    copyFromKeychain(p)
                                 }
-                                Button(NSLocalizedString("Open", comment: "Open")) { onOpenProvider?(p.id) }
                             }
-                        }
-
-                        // Models section per provider
-                        HStack(spacing: 12) {
-                            if loading.contains(p.id) {
-                                ProgressView()
-                            } else {
-                                Button(NSLocalizedString("FetchModels", comment: "Fetch models")) { fetchModels(for: p) }
-                            }
-                            if let list = models[p.id], !list.isEmpty {
-                                Text(String(format: NSLocalizedString("ModelsCountFmt", comment: "Models count"), list.count))
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                            if let err = modelErrors[p.id] {
-                                Text(err).font(.caption).foregroundColor(.secondary)
-                            }
-                        }
-                        if let list = models[p.id], !list.isEmpty {
-                            // Show up to first 6 models inline
-                            let prefix = Array(list.prefix(6))
-                            Text(prefix.joined(separator: ", "))
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                            .buttonStyle(.bordered)
+                            
+                            Button("Copy Base URL") { copyBaseURL(p) }
+                                .buttonStyle(.bordered)
+                            
+                            Spacer()
                         }
                     }
                 }
@@ -118,27 +104,6 @@ struct HomepageView: View {
     private func copyBaseURL(_ p: Provider) {
         copy(p.baseURL, message: "Base URL Copied")
     }
-    
-    private func copyFullURL(_ p: Provider) {
-        let base = URL(string: p.baseURL)
-        let path = (base?.path.trimmingCharacters(in: CharacterSet(charactersIn: "/")) ?? "")
-        let fullURL: String
-        
-        switch p.kind {
-        case .openAICompatible:
-            if path.hasSuffix("v1") {
-                fullURL = p.baseURL
-            } else {
-                fullURL = (base?.appendingPathComponent("v1").absoluteString ?? p.baseURL)
-            }
-        case .aliyunNative:
-            fullURL = (base?.appendingPathComponent("api/v1").absoluteString ?? p.baseURL)
-        case .ollama:
-            fullURL = p.baseURL
-        }
-        
-        copy(fullURL, message: "Full URL Copied")
-    }
 
     private func copy(_ text: String, message: String = "Copied") {
         let pb = NSPasteboard.general
@@ -146,20 +111,5 @@ struct HomepageView: View {
         pb.setString(text, forType: .string)
         self.message = message
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { self.message = nil }
-    }
-
-    private func fetchModels(for p: Provider) {
-        loading.insert(p.id)
-        modelErrors[p.id] = nil
-        let provider = p
-        Task {
-            let adapter = AdapterFactory.make(for: provider)
-            let (list, err) = await adapter.listModels(provider: provider)
-            await MainActor.run {
-                self.models[p.id] = list
-                if let err = err, !err.isEmpty { self.modelErrors[p.id] = err } else { self.modelErrors[p.id] = nil }
-                self.loading.remove(p.id)
-            }
-        }
     }
 }
