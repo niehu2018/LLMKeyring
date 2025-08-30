@@ -15,7 +15,7 @@ Key features
 - Bilingual UI: English and Simplified Chinese.
 
 Get started (2 minutes)
-- Download: grab the latest release on GitHub (Releases tab). If macOS blocks it, allow from System Settings > Privacy & Security.
+- Download: grab the latest release on GitHub (Releases tab) — DMG provided for quick install. If macOS blocks it, allow from System Settings > Privacy & Security.
 - Add a provider: click “+”, pick a template, paste Base URL & API key, Save.
 - Test & switch: click “Test” to verify; set default provider from the menu.
 
