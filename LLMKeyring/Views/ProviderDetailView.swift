@@ -7,7 +7,7 @@ struct ProviderDetailView: View {
     @State private var showingKeySaved = false
     @State private var testing = false
     @FocusState private var keyFieldFocused: Bool
-    @Environment(\.locale) private var locale
+    @StateObject private var localizationHelper = LocalizationHelper.shared
 
     var body: some View {
         ScrollView {
@@ -30,7 +30,7 @@ struct ProviderDetailView: View {
                     HStack(spacing: 8) {
                         Image(systemName: provider.enabled ? "checkmark.circle.fill" : "xmark.circle")
                             .foregroundColor(provider.enabled ? .green : .secondary)
-                        Text(provider.enabled ? NSLocalizedString("Enabled", comment: "Enabled") : NSLocalizedString("Disabled", comment: "Disabled"))
+                        Text(provider.enabled ? LocalizedString("Enabled", comment: "Enabled") : LocalizedString("Disabled", comment: "Disabled"))
                             .font(.caption)
                             .foregroundColor(provider.enabled ? .green : .secondary)
                     }
@@ -43,7 +43,7 @@ struct ProviderDetailView: View {
                 
                 // Basic Configuration
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(NSLocalizedString("BasicConfiguration", comment: "Basic Configuration"))
+                    Text(LocalizedString("BasicConfiguration", comment: "Basic Configuration"))
                         .font(.headline)
                         .fontWeight(.semibold)
                         .padding(.horizontal, 20)
@@ -51,17 +51,17 @@ struct ProviderDetailView: View {
                     VStack(spacing: 16) {
                         // Name
                         VStack(alignment: .leading, spacing: 6) {
-                            Text(NSLocalizedString("Name", comment: "Name"))
+                            Text(LocalizedString("Name", comment: "Name"))
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                            TextField(NSLocalizedString("ProviderNamePlaceholder", comment: "Provider Name"), text: $provider.name)
+                            TextField(LocalizedString("ProviderNamePlaceholder", comment: "Provider Name"), text: $provider.name)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                         .padding(.horizontal, 20)
                         
                         // Base URL
                         VStack(alignment: .leading, spacing: 6) {
-                            Text(NSLocalizedString("BaseURL", comment: "Base URL"))
+                            Text(LocalizedString("BaseURL", comment: "Base URL"))
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                             TextField("https://api.example.com", text: $provider.baseURL)
@@ -75,7 +75,7 @@ struct ProviderDetailView: View {
                                         store.update(provider)
                                     }
                                 } label: {
-                                    Label(NSLocalizedString("Normalize", comment: "Normalize"), systemImage: "wand.and.stars")
+                                    Label(LocalizedString("Normalize", comment: "Normalize"), systemImage: "wand.and.stars")
                                 }
                                 if let alt = BaseURLHelper.alternateKindAndBase(for: provider) {
                                     Button {
@@ -85,7 +85,7 @@ struct ProviderDetailView: View {
                                         provider = p
                                         store.update(p)
                                     } label: {
-                                        Label(NSLocalizedString("SwitchMode", comment: "Switch Mode"), systemImage: "arrow.triangle.2.circlepath")
+                                        Label(LocalizedString("SwitchMode", comment: "Switch Mode"), systemImage: "arrow.triangle.2.circlepath")
                                     }.help(alt.0.displayName)
                                 }
                                 Button {
@@ -97,21 +97,21 @@ struct ProviderDetailView: View {
                                         store.update(p)
                                     }
                                 } label: {
-                                    Label(NSLocalizedString("Detect", comment: "Detect"), systemImage: "scope")
+                                    Label(LocalizedString("Detect", comment: "Detect"), systemImage: "scope")
                                 }
                             }
                             .buttonStyle(.bordered)
                             .controlSize(.small)
-                            Text(NSLocalizedString("NormalizeExplain", comment: "Explain normalize"))
+                            Text(LocalizedString("NormalizeExplain", comment: "Explain normalize"))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                             if provider.kind == .openAICompatible && provider.baseURL.contains("aliyuncs.com") {
-                                Text(NSLocalizedString("HintAliyunBaseURL", comment: "Aliyun base URL hint"))
+                                Text(LocalizedString("HintAliyunBaseURL", comment: "Aliyun base URL hint"))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
                             if provider.baseURL.contains("moonshot.ai") {
-                                Text(NSLocalizedString("KimiURLTip", comment: "Kimi URL tip"))
+                                Text(LocalizedString("KimiURLTip", comment: "Kimi URL tip"))
                                     .font(.caption)
                                     .foregroundColor(.orange)
                             }
@@ -125,7 +125,7 @@ struct ProviderDetailView: View {
                 
                 // Authentication Section
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(NSLocalizedString("APIKey", comment: "API Key"))
+                    Text(LocalizedString("APIKey", comment: "API Key"))
                         .font(.headline)
                         .fontWeight(.semibold)
                         .padding(.horizontal, 20)
@@ -138,7 +138,7 @@ struct ProviderDetailView: View {
                                     .foregroundColor(.green)
                                     .font(.title3)
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(NSLocalizedString("SafelySaved", comment: "Safely Saved"))
+                                    Text(LocalizedString("SafelySaved", comment: "Safely Saved"))
                                         .font(.subheadline)
                                         .fontWeight(.medium)
                                     Text("Keychain: \(keyRef)")
@@ -149,7 +149,7 @@ struct ProviderDetailView: View {
                                 Image(systemName: "lock.slash")
                                     .foregroundColor(.orange)
                                     .font(.title3)
-                                Text(NSLocalizedString("NoAPIKeySaved", comment: "No API Key Saved"))
+                                Text(LocalizedString("NoAPIKeySaved", comment: "No API Key Saved"))
                                     .font(.subheadline)
                                     .fontWeight(.medium)
                                     .foregroundColor(.orange)
@@ -160,7 +160,7 @@ struct ProviderDetailView: View {
                         
                         // Input and buttons
                         VStack(spacing: 12) {
-                            SecureField(NSLocalizedString("EnterAPIKey", comment: "Enter API Key"), text: $apiKeyInput)
+                            SecureField(LocalizedString("EnterAPIKey", comment: "Enter API Key"), text: $apiKeyInput)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .focused($keyFieldFocused)
                                 .font(.system(.body, design: .monospaced))
@@ -169,7 +169,7 @@ struct ProviderDetailView: View {
                                 Button(action: saveKey) {
                                     HStack {
                                         Image(systemName: "square.and.arrow.down")
-                                        Text(NSLocalizedString("Save", comment: "Save"))
+                                        Text(LocalizedString("Save", comment: "Save"))
                                     }
                                     .frame(maxWidth: .infinity)
                                 }
@@ -179,7 +179,7 @@ struct ProviderDetailView: View {
                                 Button(action: removeKey) {
                                     HStack {
                                         Image(systemName: "trash")
-                                        Text(NSLocalizedString("Remove", comment: "Remove"))
+                                        Text(LocalizedString("Remove", comment: "Remove"))
                                     }
                                     .frame(maxWidth: .infinity)
                                 }
@@ -194,7 +194,7 @@ struct ProviderDetailView: View {
                             HStack(spacing: 8) {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.green)
-                                Text(NSLocalizedString("SaveSuccess", comment: "Save Successful"))
+                                Text(LocalizedString("SaveSuccess", comment: "Save Successful"))
                                     .font(.subheadline)
                                     .foregroundColor(.green)
                             }
@@ -208,7 +208,7 @@ struct ProviderDetailView: View {
                 
                 // Connection Test
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(NSLocalizedString("ConnectionTest", comment: "Connection Test"))
+                    Text(LocalizedString("ConnectionTest", comment: "Connection Test"))
                         .font(.headline)
                         .fontWeight(.semibold)
                         .padding(.horizontal, 20)
@@ -219,10 +219,10 @@ struct ProviderDetailView: View {
                                 if testing {
                                     ProgressView()
                                         .scaleEffect(0.8)
-                                    Text(NSLocalizedString("Testing", comment: "Testing..."))
+                                    Text(LocalizedString("Testing", comment: "Testing..."))
                                 } else {
                                     Image(systemName: "bolt.fill")
-                                    Text(NSLocalizedString("StartTest", comment: "Start Test"))
+                                    Text(LocalizedString("StartTest", comment: "Start Test"))
                                 }
                             }
                             .frame(maxWidth: .infinity)
@@ -235,7 +235,7 @@ struct ProviderDetailView: View {
                         // Test result
                         HStack(spacing: 10) {
                             StatusDot(status: provider.lastTest.status)
-                            Text(provider.lastTest.message ?? NSLocalizedString("ClickToStartTest", comment: "Click the button above to start connection test"))
+                            Text(provider.lastTest.message ?? LocalizedString("ClickToStartTest", comment: "Click the button above to start connection test"))
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                             Spacer()
@@ -255,7 +255,7 @@ struct ProviderDetailView: View {
             }
         }
         .navigationTitle("")
-        .id(locale)
+        .id(localizationHelper.currentLanguage)
     }
 
     private var hasKey: Bool {

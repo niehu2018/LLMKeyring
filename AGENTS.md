@@ -22,6 +22,16 @@
 - Access control: default to `internal`; use `private` for helpers.
 - Lint/format: Use Xcode’s formatter; wrap at ~120 cols when reasonable.
 
+## Localization (EN + zh-Hans)
+- Always localize UI text in both `en.lproj/Localizable.strings` and `zh-Hans.lproj/Localizable.strings` when updating UI.
+- Use `NSLocalizedString("Key", comment: "…")` in code; do not hardcode strings.
+- Add the same key to both files. Example:
+  - Code: `Text(NSLocalizedString("NormalizeExplain", comment: "Explain normalize"))`
+  - en: `"NormalizeExplain" = "Normalize: Fix Base URL…";`
+  - zh-Hans: `"NormalizeExplain" = "Normalize：按推荐规范修正 Base URL…";`
+- Keep keys grouped by feature; prefer consistent, descriptive names.
+- Quick check: `rg -n "NSLocalizedString\(" LLMKeyring | wc -l` and ensure both .strings contain the new keys.
+
 ## Testing Guidelines
 - Current repo has no test target. When adding tests, use XCTest in `LLMKeyringTests/`.
 - File naming: `<Feature>Tests.swift`; test funcs start with `test...`.
