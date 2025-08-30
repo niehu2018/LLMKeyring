@@ -28,3 +28,8 @@ xcuserdata/
 
 # App-specific
 LLMKeyring/build/
+
+# Docs that shouldn't be published
+/AGENTS.md
+/CLAUDE.md
+LLMKeyring/CLAUDE.md
