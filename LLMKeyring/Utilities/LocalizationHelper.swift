@@ -25,7 +25,12 @@ class LocalizationHelper: ObservableObject {
         case "en": return "en"
         case "zh-Hans": return "zh-Hans"
         case "system":
-            let systemLang = Locale.current.languageCode ?? "en"
+            let systemLang: String
+            if #available(macOS 13.0, *) {
+                systemLang = Locale.current.language.languageCode?.identifier ?? "en"
+            } else {
+                systemLang = Locale.current.languageCode ?? "en"
+            }
             if systemLang.hasPrefix("zh") {
                 return "zh-Hans"
             } else {
