@@ -5,14 +5,14 @@ struct AppSettingsView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("语言 / Language")) {
-                Picker("语言 / Language", selection: $appLanguage) {
-                    Text("跟随系统 / System").tag("system")
+            Section(header: Text(NSLocalizedString("LanguageSection", comment: "Language Section"))) {
+                Picker("", selection: $appLanguage) {
+                    Text(NSLocalizedString("FollowSystem", comment: "Follow System")).tag("system")
                     Text("English").tag("en")
                     Text("简体中文").tag("zh-Hans")
                 }
                 .pickerStyle(.segmented)
-                Text("更改语言后，界面将即时更新。")
+                Text(NSLocalizedString("LanguageChangeHint", comment: "Language change hint"))
                     .font(.caption)
                     .foregroundColor(.secondary)
             }

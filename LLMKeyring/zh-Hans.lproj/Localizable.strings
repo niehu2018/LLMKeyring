@@ -108,6 +108,20 @@
 "APIKeyCopied" = "API Key 已复制";
 "BaseURLCopied" = "Base URL 已复制";
 
+/* 工具栏操作 */
+"New" = "新增";
+"Delete" = "删除";
+"ProviderManagement" = "提供商管理";
+
+/* 配置字段 */
+"BaseURL" = "Base URL";
+
+/* 菜单栏文本 */
+"NoDefaultProvider" = "未设置默认提供商";
+"SwitchDefaultProvider" = "切换默认提供商";
+"OpenManager" = "打开管理器";
+"TestDefaultProvider" = "测试默认提供商";
+
 /* 更多类型与模板 */
 "KindAzureOpenAI" = "Azure OpenAI";
 "ERR_ROUTE_HINT_AZURE" = "路由错误。Base 应为 https://<resource>.openai.azure.com（不要带 /v1）。";
@@ -134,3 +148,8 @@
 "ERR_BAIDU_TOKEN_HINT" = "请在 Keychain 中保存 access_token，并将 Base URL 设置为 https://aip.baidubce.com";
 "ERR_VERTEX_BASE_HINT" = "Base 需包含 /v1/projects/{project}/locations/{region}";
 "ERR_VERTEX_AUTH_HINT" = "请提供 OAuth 访问令牌（gcloud 或服务账号）";
+
+/* 设置界面 */
+"LanguageSection" = "语言";
+"FollowSystem" = "跟随系统";
+"LanguageChangeHint" = "更改语言后，界面将即时更新。";
