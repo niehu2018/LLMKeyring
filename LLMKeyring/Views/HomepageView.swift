@@ -45,16 +45,16 @@ struct HomepageView: View {
                         
                         // Second row: Copy buttons
                         HStack(spacing: 8) {
-                            Button("Copy API Key") { 
+                            Button(NSLocalizedString("CopyAPIKey", comment: "Copy API Key")) { 
                                 if revealed[p.id] != nil {
-                                    copy(revealed[p.id]!, message: "API Key Copied")
+                                    copy(revealed[p.id]!, message: NSLocalizedString("APIKeyCopied", comment: "API Key Copied"))
                                 } else {
                                     copyFromKeychain(p)
                                 }
                             }
                             .buttonStyle(.bordered)
                             
-                            Button("Copy Base URL") { copyBaseURL(p) }
+                            Button(NSLocalizedString("CopyBaseURL", comment: "Copy Base URL")) { copyBaseURL(p) }
                                 .buttonStyle(.bordered)
                             
                             Spacer()
@@ -94,7 +94,7 @@ struct HomepageView: View {
         guard case let .bearer(keyRef) = p.auth else { return }
         do {
             if let k = try KeychainService.shared.read(account: keyRef) { 
-                copy(k, message: "API Key Copied")
+                copy(k, message: NSLocalizedString("APIKeyCopied", comment: "API Key Copied"))
             }
         } catch {
             message = error.localizedDescription
@@ -102,7 +102,7 @@ struct HomepageView: View {
     }
     
     private func copyBaseURL(_ p: Provider) {
-        copy(p.baseURL, message: "Base URL Copied")
+        copy(p.baseURL, message: NSLocalizedString("BaseURLCopied", comment: "Base URL Copied"))
     }
 
     private func copy(_ text: String, message: String = "Copied") {

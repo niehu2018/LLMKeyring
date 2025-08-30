@@ -19,6 +19,10 @@ enum AdapterFactory {
             return OllamaAdapter()
         case .aliyunNative:
             return AliyunDashScopeAdapter()
+        case .anthropic:
+            return AnthropicAdapter()
+        case .googleGemini:
+            return GoogleGeminiAdapter()
         }
     }
 }

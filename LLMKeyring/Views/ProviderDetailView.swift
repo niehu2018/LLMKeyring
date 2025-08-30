@@ -29,7 +29,7 @@ struct ProviderDetailView: View {
                     HStack(spacing: 8) {
                         Image(systemName: provider.enabled ? "checkmark.circle.fill" : "xmark.circle")
                             .foregroundColor(provider.enabled ? .green : .secondary)
-                        Text(provider.enabled ? "已启用" : "已禁用")
+                        Text(provider.enabled ? NSLocalizedString("Enabled", comment: "Enabled") : NSLocalizedString("Disabled", comment: "Disabled"))
                             .font(.caption)
                             .foregroundColor(provider.enabled ? .green : .secondary)
                     }
@@ -42,7 +42,7 @@ struct ProviderDetailView: View {
                 
                 // Basic Configuration
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("基本配置")
+                    Text(NSLocalizedString("BasicConfiguration", comment: "Basic Configuration"))
                         .font(.headline)
                         .fontWeight(.semibold)
                         .padding(.horizontal, 20)
@@ -50,26 +50,11 @@ struct ProviderDetailView: View {
                     VStack(spacing: 16) {
                         // Name
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("名称")
+                            Text(NSLocalizedString("Name", comment: "Name"))
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                            TextField("Provider Name", text: $provider.name)
+                            TextField(NSLocalizedString("ProviderNamePlaceholder", comment: "Provider Name"), text: $provider.name)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                        }
-                        .padding(.horizontal, 20)
-                        
-                        // Type
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("类型")
-                                .font(.subheadline)
-                                .fontWeight(.medium)
-                            Picker("类型", selection: $provider.kind) {
-                                ForEach(ProviderKind.allCases) { kind in
-                                    Text(kind.displayName).tag(kind)
-                                }
-                            }
-                            .pickerStyle(MenuPickerStyle())
-                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .padding(.horizontal, 20)
                         
@@ -96,7 +81,7 @@ struct ProviderDetailView: View {
                 
                 // Authentication Section
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("API 密钥")
+                    Text(NSLocalizedString("APIKey", comment: "API Key"))
                         .font(.headline)
                         .fontWeight(.semibold)
                         .padding(.horizontal, 20)
@@ -109,7 +94,7 @@ struct ProviderDetailView: View {
                                     .foregroundColor(.green)
                                     .font(.title3)
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text("已安全保存")
+                                    Text(NSLocalizedString("SafelySaved", comment: "Safely Saved"))
                                         .font(.subheadline)
                                         .fontWeight(.medium)
                                     Text("Keychain: \(keyRef)")
@@ -120,7 +105,7 @@ struct ProviderDetailView: View {
                                 Image(systemName: "lock.slash")
                                     .foregroundColor(.orange)
                                     .font(.title3)
-                                Text("未保存 API Key")
+                                Text(NSLocalizedString("NoAPIKeySaved", comment: "No API Key Saved"))
                                     .font(.subheadline)
                                     .fontWeight(.medium)
                                     .foregroundColor(.orange)
@@ -131,7 +116,7 @@ struct ProviderDetailView: View {
                         
                         // Input and buttons
                         VStack(spacing: 12) {
-                            SecureField("输入 API Key", text: $apiKeyInput)
+                            SecureField(NSLocalizedString("EnterAPIKey", comment: "Enter API Key"), text: $apiKeyInput)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .focused($keyFieldFocused)
                                 .font(.system(.body, design: .monospaced))
@@ -140,7 +125,7 @@ struct ProviderDetailView: View {
                                 Button(action: saveKey) {
                                     HStack {
                                         Image(systemName: "square.and.arrow.down")
-                                        Text("保存")
+                                        Text(NSLocalizedString("Save", comment: "Save"))
                                     }
                                     .frame(maxWidth: .infinity)
                                 }
@@ -150,7 +135,7 @@ struct ProviderDetailView: View {
                                 Button(action: removeKey) {
                                     HStack {
                                         Image(systemName: "trash")
-                                        Text("移除")
+                                        Text(NSLocalizedString("Remove", comment: "Remove"))
                                     }
                                     .frame(maxWidth: .infinity)
                                 }
@@ -165,7 +150,7 @@ struct ProviderDetailView: View {
                             HStack(spacing: 8) {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.green)
-                                Text("保存成功")
+                                Text(NSLocalizedString("SaveSuccess", comment: "Save Successful"))
                                     .font(.subheadline)
                                     .foregroundColor(.green)
                             }
@@ -179,7 +164,7 @@ struct ProviderDetailView: View {
                 
                 // Connection Test
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("连接测试")
+                    Text(NSLocalizedString("ConnectionTest", comment: "Connection Test"))
                         .font(.headline)
                         .fontWeight(.semibold)
                         .padding(.horizontal, 20)
@@ -190,10 +175,10 @@ struct ProviderDetailView: View {
                                 if testing {
                                     ProgressView()
                                         .scaleEffect(0.8)
-                                    Text("测试中...")
+                                    Text(NSLocalizedString("Testing", comment: "Testing..."))
                                 } else {
                                     Image(systemName: "bolt.fill")
-                                    Text("开始测试")
+                                    Text(NSLocalizedString("StartTest", comment: "Start Test"))
                                 }
                             }
                             .frame(maxWidth: .infinity)
@@ -206,7 +191,7 @@ struct ProviderDetailView: View {
                         // Test result
                         HStack(spacing: 10) {
                             StatusDot(status: provider.lastTest.status)
-                            Text(provider.lastTest.message ?? "点击上方按钮开始测试连接")
+                            Text(provider.lastTest.message ?? NSLocalizedString("ClickToStartTest", comment: "Click the button above to start connection test"))
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                             Spacer()

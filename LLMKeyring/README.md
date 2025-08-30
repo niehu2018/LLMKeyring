@@ -63,10 +63,18 @@ If you pulled an older revision with name "LLMManager", run `bash LLMManager/scr
 - Aliyun (DashScope compatible mode, China): `https://dashscope.aliyuncs.com/compatible-mode`
 - SiliconFlow (CN): `https://api.siliconflow.cn`
 - Ollama (local): `http://127.0.0.1:11434` (use IPv4 to avoid ::1 issues)
+ - Anthropic (Claude): `https://api.anthropic.com`
+ - Google Gemini: `https://generativelanguage.googleapis.com`
 
 OpenAI-compatible adapter auto-normalizes the path:
 - If you include `/v1`, it requests `/v1/models`.
 - If not, it appends `/v1/models` automatically.
+
+Anthropic adapter expects headers:
+- `x-api-key: <key>` and `anthropic-version: 2023-06-01`.
+
+Google Gemini adapter appends API key as query parameter:
+- `GET /v1/models?key=<key>`.
 
 ## Roadmap (next)
 - Model listing and capability tagging (tools/vision/etc.)
