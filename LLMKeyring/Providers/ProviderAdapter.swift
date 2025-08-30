@@ -15,8 +15,6 @@ enum AdapterFactory {
         switch provider.kind {
         case .openAICompatible, .anthropic, .googleGemini, .azureOpenAI, .zhipuGLMNative, .baiduQianfan, .vertexGemini:
             return OpenAICompatibleAdapter()
-        case .ollama:
-            return OllamaAdapter()
         case .aliyunNative:
             return AliyunDashScopeAdapter()
         }

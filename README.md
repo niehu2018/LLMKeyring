@@ -4,7 +4,7 @@ A lightweight macOS SwiftUI menu bar app to manage multiple LLM providers and AP
 
 - Platforms: macOS 13+
 - Tech: SwiftUI, Keychain, Xcode project
-- Providers: OpenAI‑compatible (Kimi/Moonshot, SiliconFlow, OpenRouter, Together, Mistral, Groq, Fireworks), Ollama, Aliyun (native + compatible), Anthropic, Google Gemini, Azure OpenAI, Zhipu GLM (native), Baidu Qianfan (native), Vertex AI Gemini
+ - Providers: OpenAI‑compatible (Kimi/Moonshot, SiliconFlow, OpenRouter, Together, Mistral, Groq, Fireworks), Aliyun (native + compatible), Anthropic, Google Gemini, Azure OpenAI, Zhipu GLM (native), Baidu Qianfan (native), Vertex AI Gemini
 
 ## Quick Start
 - Xcode: open `LLMKeyring/LLMKeyring.xcodeproj` and run the `LLMKeyring` scheme.
@@ -22,7 +22,7 @@ A lightweight macOS SwiftUI menu bar app to manage multiple LLM providers and AP
 
 ## Security
 - Keys are stored in macOS Keychain (`service: LLMKeyring`, `account: prov_<uuid>`). No export, no logs.
-- Prefer IPv4 `http://127.0.0.1:11434` for Ollama to avoid `::1` issues.
+
 
 ## Contributing
 - See `AGENTS.md` for guidelines, commands, and PR requirements.

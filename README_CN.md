@@ -4,7 +4,7 @@
 
 - 平台：macOS 13+
 - 技术栈：SwiftUI、Keychain、Xcode 工程
-- 提供商：OpenAI 兼容（Kimi/Moonshot、SiliconFlow、OpenRouter、Together、Mistral、Groq、Fireworks）、Ollama、阿里云（原生 + 兼容模式）、Anthropic、Google Gemini、Azure OpenAI、智谱 GLM（原生）、百度千帆（原生）、Vertex AI Gemini
+- 提供商：OpenAI 兼容（Kimi/Moonshot、SiliconFlow、OpenRouter、Together、Mistral、Groq、Fireworks）、阿里云（原生 + 兼容模式）、Anthropic、Google Gemini、Azure OpenAI、智谱 GLM（原生）、百度千帆（原生）、Vertex AI Gemini
 
 ## 快速开始
 - Xcode：打开 `LLMKeyring/LLMKeyring.xcodeproj`，运行 `LLMKeyring` scheme。
@@ -25,7 +25,7 @@
 
 ## 安全
 - API Key 仅存于 Keychain（`service: LLMKeyring`，`account: prov_<uuid>`），不导出、不写日志。
-- Ollama 推荐 IPv4 `http://127.0.0.1:11434` 以避免 `::1` 问题。
+
 
 ## 贡献
 - 请阅读 `AGENTS.md` 获取贡献规范、命令与 PR 要求。

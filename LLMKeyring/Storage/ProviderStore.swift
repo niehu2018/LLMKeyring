@@ -189,17 +189,6 @@ final class ProviderStore: ObservableObject {
             extraHeaders: [:]
         ))
 
-        // Ollama local
-        defaults.append(Provider(
-            name: NSLocalizedString("ProviderNameOllama", comment: "Ollama"),
-            kind: .ollama,
-            baseURL: "http://127.0.0.1:11434",
-            defaultModel: nil,
-            enabled: true,
-            auth: .none,
-            extraHeaders: [:]
-        ))
-
         // Azure OpenAI (placeholder resource)
         defaults.append(Provider(
             name: NSLocalizedString("ProviderNameAzureOpenAI", comment: "Azure OpenAI"),

@@ -16,7 +16,6 @@
         100000008 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000005 /* HTTPClient.swift */; };
         100000009 /* ProviderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000006 /* ProviderAdapter.swift */; };
         10000000A /* OpenAICompatibleAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000007 /* OpenAICompatibleAdapter.swift */; };
-        10000000B /* OllamaAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000008 /* OllamaAdapter.swift */; };
         10000000C /* ProviderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000009 /* ProviderStore.swift */; };
         10000000D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 200000030 /* Localizable.strings */; };
         10000000E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000021 /* SettingsView.swift */; };
@@ -37,7 +36,6 @@
         200000005 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking/HTTPClient.swift; sourceTree = "<group>"; };
         200000006 /* ProviderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/ProviderAdapter.swift; sourceTree = "<group>"; };
         200000007 /* OpenAICompatibleAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/OpenAICompatibleAdapter.swift; sourceTree = "<group>"; };
-        200000008 /* OllamaAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/OllamaAdapter.swift; sourceTree = "<group>"; };
         200000009 /* ProviderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage/ProviderStore.swift; sourceTree = "<group>"; };
         200000010 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/ContentView.swift; sourceTree = "<group>"; };
         200000011 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/MenuBarView.swift; sourceTree = "<group>"; };
@@ -87,7 +85,6 @@
                 200000005 /* HTTPClient.swift */,
                 200000006 /* ProviderAdapter.swift */,
                 200000007 /* OpenAICompatibleAdapter.swift */,
-                200000008 /* OllamaAdapter.swift */,
                 200000061 /* AliyunDashScopeAdapter.swift */,
                 200000009 /* ProviderStore.swift */,
                 200000013 /* Info.plist */,
@@ -178,7 +175,6 @@
                 100000008 /* HTTPClient.swift in Sources */,
                 100000009 /* ProviderAdapter.swift in Sources */,
                 10000000A /* OpenAICompatibleAdapter.swift in Sources */,
-                10000000B /* OllamaAdapter.swift in Sources */,
                 100000013 /* AliyunDashScopeAdapter.swift in Sources */,
                 10000000C /* ProviderStore.swift in Sources */,
             );

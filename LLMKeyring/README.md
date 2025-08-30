@@ -1,11 +1,11 @@
 # LLM Keyring (MVP)
 
-A lightweight macOS SwiftUI menu bar app to manage multiple LLM providers (Ollama, Aliyun/OpenAI-compatible, DeepSeek, Kimi): add/edit/delete providers, securely store API keys in Keychain, and test health/connectivity.
+A lightweight macOS SwiftUI menu bar app to manage multiple LLM providers (Aliyun/OpenAI-compatible, DeepSeek, Kimi): add/edit/delete providers, securely store API keys in Keychain, and test health/connectivity.
 
 This MVP includes:
 - Menu bar extra + management window (list + detail).
 - Provider models and storage (UserDefaults, Keychain for secrets).
-- Provider adapters: OpenAI-compatible (DeepSeek, Kimi, Aliyun compatible) and Ollama, with health test.
+- Provider adapters: OpenAI-compatible (DeepSeek, Kimi, Aliyun compatible), with health test.
 
 ## Getting Started (Xcode)
 
@@ -55,14 +55,12 @@ If you pulled an older revision with name "LLMManager", run `bash LLMManager/scr
 ## Notes
 - API keys are stored only in macOS Keychain (`service: LLMKeyring`, `account: prov_<uuid>`). They are not exported or logged.
 - Health test for OpenAI-compatible providers calls `{baseURL}/v1/models` with `Authorization: Bearer <key>`.
-- Health test for Ollama calls `{baseURL}/api/tags`.
 
 ## Default Provider Base URLs
 - DeepSeek: `https://api.deepseek.com`
 - Kimi (Moonshot): `https://api.moonshot.cn`
 - Aliyun (DashScope compatible mode, China): `https://dashscope.aliyuncs.com/compatible-mode`
  - SiliconFlow (CN): `https://api.siliconflow.cn`
- - Ollama (local): `http://127.0.0.1:11434` (use IPv4 to avoid ::1 issues)
  - Anthropic (Claude): `https://api.anthropic.com`
   - Google Gemini: `https://generativelanguage.googleapis.com`
   - Azure OpenAI: `https://<resource>.openai.azure.com`
