@@ -74,7 +74,7 @@ struct ProviderDetailView: View {
                                         store.update(provider)
                                     }
                                 } label: {
-                                    Label("Normalize", systemImage: "wand.and.stars")
+                                    Label(NSLocalizedString("Normalize", comment: "Normalize"), systemImage: "wand.and.stars")
                                 }
                                 if let alt = BaseURLHelper.alternateKindAndBase(for: provider) {
                                     Button {
@@ -84,7 +84,7 @@ struct ProviderDetailView: View {
                                         provider = p
                                         store.update(p)
                                     } label: {
-                                        Label("Switch Mode", systemImage: "arrow.triangle.2.circlepath")
+                                        Label(NSLocalizedString("SwitchMode", comment: "Switch Mode"), systemImage: "arrow.triangle.2.circlepath")
                                     }.help(alt.0.displayName)
                                 }
                                 Button {
@@ -96,7 +96,7 @@ struct ProviderDetailView: View {
                                         store.update(p)
                                     }
                                 } label: {
-                                    Label("Detect", systemImage: "scope")
+                                    Label(NSLocalizedString("Detect", comment: "Detect"), systemImage: "scope")
                                 }
                             }
                             .buttonStyle(.bordered)
@@ -107,7 +107,7 @@ struct ProviderDetailView: View {
                                     .foregroundColor(.secondary)
                             }
                             if provider.baseURL.contains("moonshot.ai") {
-                                Text("Tip: use https://api.moonshot.cn for Kimi")
+                                Text(NSLocalizedString("KimiURLTip", comment: "Kimi URL tip"))
                                     .font(.caption)
                                     .foregroundColor(.orange)
                             }

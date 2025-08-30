@@ -153,3 +153,9 @@
 "LanguageSection" = "Language";
 "FollowSystem" = "Follow System";
 "LanguageChangeHint" = "The interface will update immediately after changing the language.";
+
+/* Base URL Helper Functions */
+"Normalize" = "Normalize";
+"SwitchMode" = "Switch Mode";
+"Detect" = "Detect";
+"KimiURLTip" = "Tip: use https://api.moonshot.cn for Kimi";
