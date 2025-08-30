@@ -3,7 +3,7 @@ import SwiftUI
 struct MenuBarView: View {
     @EnvironmentObject var store: ProviderStore
     @Environment(\.openWindow) private var openWindow
-    @Environment(\.locale) private var locale
+    @StateObject private var localizationHelper = LocalizationHelper.shared
     @State private var isTesting = false
 
     var body: some View {
@@ -15,12 +15,12 @@ struct MenuBarView: View {
                 }
                 Text(current.baseURL).font(.caption).foregroundColor(.secondary)
             } else {
-                Text(NSLocalizedString("NoDefaultProvider", comment: "No default provider")).foregroundColor(.secondary)
+                Text(LocalizedString("NoDefaultProvider", comment: "No default provider")).foregroundColor(.secondary)
             }
 
             Divider()
 
-            Menu(NSLocalizedString("SwitchDefaultProvider", comment: "Switch Default Provider")) {
+            Menu(LocalizedString("SwitchDefaultProvider", comment: "Switch Default Provider")) {
                 ForEach(store.providers) { p in
                     Button(action: { store.setDefault(p) }) {
                         if store.defaultProviderID == p.id { Image(systemName: "checkmark") }
@@ -32,18 +32,18 @@ struct MenuBarView: View {
             Button {
                 openWindow(id: "manager")
             } label: {
-                Label(NSLocalizedString("OpenManager", comment: "Open Manager"), systemImage: "gearshape")
+                Label(LocalizedString("OpenManager", comment: "Open Manager"), systemImage: "gearshape")
             }
 
             Button {
                 Task { await testDefault() }
             } label: {
-                if isTesting { ProgressView() } else { Label(NSLocalizedString("TestDefaultProvider", comment: "Test Default Provider"), systemImage: "bolt") }
+                if isTesting { ProgressView() } else { Label(LocalizedString("TestDefaultProvider", comment: "Test Default Provider"), systemImage: "bolt") }
             }.disabled(store.defaultProviderID == nil || isTesting)
         }
         .padding(12)
         .frame(minWidth: 260)
-        .id(locale)
+        .id(localizationHelper.currentLanguage)
     }
 
     private func testDefault() async {

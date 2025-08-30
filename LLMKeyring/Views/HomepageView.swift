@@ -5,12 +5,12 @@ struct HomepageView: View {
     @EnvironmentObject var store: ProviderStore
     @State private var revealed: [UUID: String] = [:]
     @State private var message: String?
-    @Environment(\.locale) private var locale
+    @StateObject private var localizationHelper = LocalizationHelper.shared
     var onOpenProvider: ((UUID) -> Void)? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(NSLocalizedString("HomepageTitle", comment: "Homepage title"))
+            Text(LocalizedString("HomepageTitle", comment: "Homepage title"))
                 .font(.title2)
                 .bold()
             if let msg = message { Text(msg).font(.caption).foregroundColor(.secondary) }
@@ -21,13 +21,13 @@ struct HomepageView: View {
                             Text(p.name).font(.headline)
                             Spacer()
                             if hasKey(p) {
-                                Label(NSLocalizedString("KeySaved", comment: "Key saved"), systemImage: "lock.fill").foregroundColor(.green)
+                                Label(LocalizedString("KeySaved", comment: "Key saved"), systemImage: "lock.fill").foregroundColor(.green)
                             } else {
-                                Label(NSLocalizedString("KeyMissing", comment: "Key missing"), systemImage: "lock.slash").foregroundColor(.orange)
+                                Label(LocalizedString("KeyMissing", comment: "Key missing"), systemImage: "lock.slash").foregroundColor(.orange)
                             }
                         }
                         if case let .bearer(keyRef) = p.auth {
-                            Text(String(format: NSLocalizedString("KeyRefFmt", comment: "Key ref"), keyRef))
+                            Text(String(format: LocalizedString("KeyRefFmt", comment: "Key ref"), keyRef))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -35,27 +35,27 @@ struct HomepageView: View {
                         HStack(spacing: 12) {
                             if let text = revealed[p.id] {
                                 Text(text).font(.system(.body, design: .monospaced))
-                                Button(NSLocalizedString("Hide", comment: "Hide")) { revealed[p.id] = nil }
+                                Button(LocalizedString("Hide", comment: "Hide")) { revealed[p.id] = nil }
                             } else {
                                 Text(maskedKey(for: p)).font(.system(.body, design: .monospaced))
-                                Button(NSLocalizedString("Reveal", comment: "Reveal")) { reveal(p) }
+                                Button(LocalizedString("Reveal", comment: "Reveal")) { reveal(p) }
                             }
                             Spacer()
-                            Button(NSLocalizedString("Open", comment: "Open")) { onOpenProvider?(p.id) }
+                            Button(LocalizedString("Open", comment: "Open")) { onOpenProvider?(p.id) }
                         }
                         
                         // Second row: Copy buttons
                         HStack(spacing: 8) {
-                            Button(NSLocalizedString("CopyAPIKey", comment: "Copy API Key")) { 
+                            Button(LocalizedString("CopyAPIKey", comment: "Copy API Key")) { 
                                 if revealed[p.id] != nil {
-                                    copy(revealed[p.id]!, message: NSLocalizedString("APIKeyCopied", comment: "API Key Copied"))
+                                    copy(revealed[p.id]!, message: LocalizedString("APIKeyCopied", comment: "API Key Copied"))
                                 } else {
                                     copyFromKeychain(p)
                                 }
                             }
                             .buttonStyle(.bordered)
                             
-                            Button(NSLocalizedString("CopyBaseURL", comment: "Copy Base URL")) { copyBaseURL(p) }
+                            Button(LocalizedString("CopyBaseURL", comment: "Copy Base URL")) { copyBaseURL(p) }
                                 .buttonStyle(.bordered)
                             
                             Spacer()
@@ -66,7 +66,7 @@ struct HomepageView: View {
             }
         }
         .padding()
-        .id(locale)
+        .id(localizationHelper.currentLanguage)
     }
 
     private func hasKey(_ p: Provider) -> Bool { if case .bearer = p.auth { return true } else { return false } }
@@ -97,7 +97,7 @@ struct HomepageView: View {
         guard case let .bearer(keyRef) = p.auth else { return }
         do {
             if let k = try KeychainService.shared.read(account: keyRef) { 
-                copy(k, message: NSLocalizedString("APIKeyCopied", comment: "API Key Copied"))
+                copy(k, message: LocalizedString("APIKeyCopied", comment: "API Key Copied"))
             }
         } catch {
             message = error.localizedDescription
@@ -105,7 +105,7 @@ struct HomepageView: View {
     }
     
     private func copyBaseURL(_ p: Provider) {
-        copy(p.baseURL, message: NSLocalizedString("BaseURLCopied", comment: "Base URL Copied"))
+        copy(p.baseURL, message: LocalizedString("BaseURLCopied", comment: "Base URL Copied"))
     }
 
     private func copy(_ text: String, message: String = "Copied") {
