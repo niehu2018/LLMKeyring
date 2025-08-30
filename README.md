@@ -29,6 +29,6 @@ A lightweight macOS SwiftUI menu bar app to manage multiple LLM providers and AP
 - Localization: every UI change must update both `en.lproj/Localizable.strings` and `zh-Hans.lproj/Localizable.strings`.
 
 ## License
-- Choose and add a license (e.g., MIT/Apache‑2.0) before publishing releases.
+- MIT — see `LICENSE` for details.
 
 中文说明见：`README_CN.md`

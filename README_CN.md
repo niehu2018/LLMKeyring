@@ -32,6 +32,6 @@
 - 本项目要求：任何 UI 变更需同时更新 `en.lproj/Localizable.strings` 与 `zh-Hans.lproj/Localizable.strings`。
 
 ## 许可证
-- 发布前请选择并添加开源许可证（建议 MIT 或 Apache‑2.0）。
+- MIT — 详见 `LICENSE`。
 
 English README: `README.md`
