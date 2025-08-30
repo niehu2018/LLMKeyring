@@ -1,0 +1,30 @@
+name: Bug report
+description: Report a problem or regression
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened? What did you expect?
+      placeholder: Clear, concise description…
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Include Base URL, provider type, and any logs (omit secrets).
+      placeholder: 1) … 2) … 3) …
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: macOS version, Xcode version
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra info / screenshots
+
