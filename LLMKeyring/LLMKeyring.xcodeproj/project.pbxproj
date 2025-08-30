@@ -195,7 +195,7 @@
                 LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
                 MACOSX_DEPLOYMENT_TARGET = 13.0;
                 MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-                PRODUCT_BUNDLE_IDENTIFIER = com.example.LLMKeyring;
+                PRODUCT_BUNDLE_IDENTIFIER = com.xyytech.LLMKeyring;
                 PRODUCT_NAME = "$(TARGET_NAME)";
                 SDKROOT = macosx;
                 SUPPORTED_PLATFORMS = "macosx";
@@ -215,7 +215,7 @@
                 INFOPLIST_FILE = Info.plist;
                 LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
                 MACOSX_DEPLOYMENT_TARGET = 13.0;
-                PRODUCT_BUNDLE_IDENTIFIER = com.example.LLMKeyring;
+                PRODUCT_BUNDLE_IDENTIFIER = com.xyytech.LLMKeyring;
                 PRODUCT_NAME = "$(TARGET_NAME)";
                 SDKROOT = macosx;
                 SUPPORTED_PLATFORMS = "macosx";
