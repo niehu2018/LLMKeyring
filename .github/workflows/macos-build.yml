@@ -31,6 +31,7 @@ jobs:
             -project LLMKeyring.xcodeproj \
             -scheme LLMKeyring \
             -configuration Debug \
+            -derivedDataPath build \
             -destination 'platform=macOS' \
             CODE_SIGNING_ALLOWED=NO \
             clean build | tee build-debug.log
@@ -46,11 +47,13 @@ jobs:
         run: |
           set -euo pipefail
           APP="LLMKeyring/build/Build/Products/Debug/LLMKeyring.app"
-          if [ -d "$APP" ]; then
-            ditto -c -k --sequesterRsrc --keepParent "$APP" LLMKeyring.app.zip
-          else
-            echo "App not found: $APP" >&2; exit 1
+          if [ ! -d "$APP" ]; then
+            echo "App not found at $APP" >&2
+            echo "Listing products dir for debugging:" >&2
+            ls -laR LLMKeyring/build/Build/Products || true
+            exit 1
           fi
+          ditto -c -k --sequesterRsrc --keepParent "$APP" LLMKeyring.app.zip
         shell: bash
 
       - name: Upload artifact
