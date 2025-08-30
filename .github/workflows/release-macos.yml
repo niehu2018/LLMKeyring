@@ -65,19 +65,17 @@ jobs:
           set -euo pipefail
           DMG_SHA=$(shasum -a 256 LLMKeyring/LLMKeyring.dmg | awk '{print $1}')
           ZIP_SHA=$(shasum -a 256 LLMKeyring/LLMKeyring.app.zip | awk '{print $1}')
-          cat > RELEASE_NOTES.md <<EOF
-## Checksums (SHA256)
-```text
-${DMG_SHA}  LLMKeyring.dmg
-${ZIP_SHA}  LLMKeyring.app.zip
-```
-
-## First run (unsigned)
-- Right-click the app and choose Open once, or
-- System Settings > Privacy & Security > Security > Open Anyway.
-
-This build is unsigned and may require manual approval on first launch.
-EOF
+          {
+            echo "## Checksums (SHA256)";
+            echo "${DMG_SHA}  LLMKeyring.dmg";
+            echo "${ZIP_SHA}  LLMKeyring.app.zip";
+            echo;
+            echo "## First run (unsigned)";
+            echo "- Right-click the app and choose Open once, or";
+            echo "- System Settings > Privacy & Security > Security > Open Anyway.";
+            echo;
+            echo "This build is unsigned and may require manual approval on first launch.";
+          } > RELEASE_NOTES.md
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2
