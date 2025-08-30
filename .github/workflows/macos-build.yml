@@ -16,6 +16,12 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
+      - name: Generate AppIcon assets
+        run: |
+          set -euo pipefail
+          cd LLMKeyring
+          bash scripts/make_app_icon.sh
+
       - name: Diagnose Xcode and project
         run: |
           set -euo pipefail

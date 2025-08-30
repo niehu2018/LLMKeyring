@@ -33,6 +33,12 @@ jobs:
           cd LLMKeyring
           xcodebuild -list -project LLMKeyring.xcodeproj
 
+      - name: Generate AppIcon assets
+        run: |
+          set -euo pipefail
+          cd LLMKeyring
+          bash scripts/make_app_icon.sh
+
       - name: Determine tag
         id: determine_tag
         shell: bash
