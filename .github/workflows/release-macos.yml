@@ -42,16 +42,35 @@ jobs:
           hdiutil create -volname "LLMKeyring" -srcfolder dist/LLMKeyring -ov -format UDZO LLMKeyring.dmg
           ditto -c -k --sequesterRsrc --keepParent "$APP" LLMKeyring.app.zip
 
+      - name: Generate checksums and release notes
+        run: |
+          set -euo pipefail
+          DMG_SHA=$(shasum -a 256 LLMKeyring/LLMKeyring.dmg | awk '{print $1}')
+          ZIP_SHA=$(shasum -a 256 LLMKeyring/LLMKeyring.app.zip | awk '{print $1}')
+          cat > RELEASE_NOTES.md <<EOF
+## Checksums (SHA256)
+```text
+${DMG_SHA}  LLMKeyring.dmg
+${ZIP_SHA}  LLMKeyring.app.zip
+```
+
+## First run (unsigned)
+- Right-click the app and choose Open once, or
+- System Settings > Privacy & Security > Security > Open Anyway.
+
+This build is unsigned and may require manual approval on first launch.
+EOF
+
       - name: Publish Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             LLMKeyring/LLMKeyring.dmg
             LLMKeyring/LLMKeyring.app.zip
+          body_path: RELEASE_NOTES.md
           draft: false
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Optional: signing + notarization (requires secrets). Add steps here if you provide Developer ID cert & notary creds.
-

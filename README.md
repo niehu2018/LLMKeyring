@@ -22,6 +22,11 @@ Get started (2 minutes)
 Privacy & security
 - Keys are stored only in macOS Keychain (`service: LLMKeyring`, `account: prov_<uuid>`). No export, no logs, no background network calls.
 
+First run (unsigned builds)
+- Right-click the app and choose Open once; or
+- Go to System Settings > Privacy & Security and click “Open Anyway”.
+Unsigned builds are normal for open‑source apps — this approval is needed only the first time.
+
 Contribute
 - Issues and PRs welcome. See `AGENTS.md` for quick guidelines. UI changes should update both English and Chinese strings.
 
