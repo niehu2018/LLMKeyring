@@ -6,100 +6,226 @@ struct ProviderDetailView: View {
     @State private var apiKeyInput: String = ""
     @State private var showingKeySaved = false
     @State private var testing = false
-    @State private var loadingModels = false
-    @State private var models: [String] = []
-    @State private var modelsMessage: String?
     @FocusState private var keyFieldFocused: Bool
 
     var body: some View {
-        Form {
-            Section(header: Text("基本信息")) {
-                TextField("名称", text: $provider.name)
-                Picker("类型", selection: $provider.kind) {
-                    ForEach(ProviderKind.allCases) { kind in
-                        Text(kind.displayName).tag(kind)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                // Header Section
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(provider.name)
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Text(provider.kind.displayName)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        Toggle("", isOn: $provider.enabled)
                     }
-                }
-                TextField("Base URL", text: $provider.baseURL)
-                if provider.kind == .openAICompatible && provider.baseURL.contains("aliyuncs.com") {
-                    Text(NSLocalizedString("HintAliyunBaseURL", comment: "Aliyun base URL hint"))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                TextField("默认模型（可选）", text: Binding.fromOptional($provider.defaultModel, replacingNilWith: ""))
-                Toggle("启用", isOn: $provider.enabled)
-            }
-
-            Section(header: Text(NSLocalizedString("ModelsSection", comment: "Models"))) {
-                HStack(spacing: 12) {
-                    Button(action: fetchModels) {
-                        if loadingModels { ProgressView() } else { Label(NSLocalizedString("FetchModels", comment: "Fetch models"), systemImage: "arrow.clockwise") }
-                    }
-                    if !models.isEmpty {
-                        Text(String(format: NSLocalizedString("ModelsCountFmt", comment: "Models count"), models.count))
+                    
+                    HStack(spacing: 8) {
+                        Image(systemName: provider.enabled ? "checkmark.circle.fill" : "xmark.circle")
+                            .foregroundColor(provider.enabled ? .green : .secondary)
+                        Text(provider.enabled ? "已启用" : "已禁用")
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(provider.enabled ? .green : .secondary)
                     }
                 }
-                if let msg = modelsMessage, !msg.isEmpty {
-                    Text(msg).font(.caption).foregroundColor(.secondary)
-                }
-                if !models.isEmpty {
-                    Picker(NSLocalizedString("PickDefaultModel", comment: "Pick default model"), selection: Binding.fromOptional($provider.defaultModel, replacingNilWith: "")) {
-                        ForEach(models, id: \.self) { m in Text(m).tag(m) }
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+                
+                Divider()
+                    .padding(.horizontal, 20)
+                
+                // Basic Configuration
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("基本配置")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .padding(.horizontal, 20)
+                    
+                    VStack(spacing: 16) {
+                        // Name
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("名称")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                            TextField("Provider Name", text: $provider.name)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        // Type
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("类型")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                            Picker("类型", selection: $provider.kind) {
+                                ForEach(ProviderKind.allCases) { kind in
+                                    Text(kind.displayName).tag(kind)
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        // Base URL
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Base URL")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                            TextField("https://api.example.com", text: $provider.baseURL)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .font(.system(.body, design: .monospaced))
+                            if provider.kind == .openAICompatible && provider.baseURL.contains("aliyuncs.com") {
+                                Text(NSLocalizedString("HintAliyunBaseURL", comment: "Aliyun base URL hint"))
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .padding(.horizontal, 20)
                     }
                 }
-            }
-
-            Section(header: Text("鉴权")) {
-                HStack {
-                    if case let .bearer(keyRef) = provider.auth {
-                        Image(systemName: "lock.fill").foregroundColor(.green)
-                        Text("已保存到 Keychain: \(keyRef)").font(.caption).foregroundColor(.secondary)
-                    } else {
-                        Image(systemName: "lock.slash").foregroundColor(.orange)
-                        Text("未保存 API Key").font(.caption).foregroundColor(.secondary)
+                
+                Divider()
+                    .padding(.horizontal, 20)
+                
+                // Authentication Section
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("API 密钥")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .padding(.horizontal, 20)
+                    
+                    VStack(alignment: .leading, spacing: 16) {
+                        // Status
+                        HStack(spacing: 10) {
+                            if case let .bearer(keyRef) = provider.auth {
+                                Image(systemName: "lock.fill")
+                                    .foregroundColor(.green)
+                                    .font(.title3)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("已安全保存")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                    Text("Keychain: \(keyRef)")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                            } else {
+                                Image(systemName: "lock.slash")
+                                    .foregroundColor(.orange)
+                                    .font(.title3)
+                                Text("未保存 API Key")
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.orange)
+                            }
+                            Spacer()
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        // Input and buttons
+                        VStack(spacing: 12) {
+                            SecureField("输入 API Key", text: $apiKeyInput)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .focused($keyFieldFocused)
+                                .font(.system(.body, design: .monospaced))
+                            
+                            HStack(spacing: 12) {
+                                Button(action: saveKey) {
+                                    HStack {
+                                        Image(systemName: "square.and.arrow.down")
+                                        Text("保存")
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .disabled(apiKeyInput.isEmpty)
+                                
+                                Button(action: removeKey) {
+                                    HStack {
+                                        Image(systemName: "trash")
+                                        Text("移除")
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.bordered)
+                                .foregroundColor(.red)
+                                .disabled(!hasKey)
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        if showingKeySaved {
+                            HStack(spacing: 8) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                                Text("保存成功")
+                                    .font(.subheadline)
+                                    .foregroundColor(.green)
+                            }
+                            .padding(.horizontal, 20)
+                        }
                     }
                 }
-                HStack {
-                    SecureField("API Key", text: $apiKeyInput)
-                        .textFieldStyle(.roundedBorder)
-                        .focused($keyFieldFocused)
-                    Button("保存") { saveKey() }
-                    Button("移除") { removeKey() }
-                        .disabled(!hasKey)
-                }
-                if showingKeySaved { Text("已保存").font(.caption).foregroundColor(.green) }
-            }
-
-            Section(header: Text("额外 Header（可选）")) {
-                KeyValueEditorView(dict: $provider.extraHeaders)
-            }
-
-            Section(header: Text("连通性测试")) {
-                HStack {
-                    Button(action: test) {
-                        if testing { ProgressView() } else { Label("测试", systemImage: "bolt") }
+                
+                Divider()
+                    .padding(.horizontal, 20)
+                
+                // Connection Test
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("连接测试")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .padding(.horizontal, 20)
+                    
+                    VStack(spacing: 16) {
+                        Button(action: test) {
+                            HStack {
+                                if testing {
+                                    ProgressView()
+                                        .scaleEffect(0.8)
+                                    Text("测试中...")
+                                } else {
+                                    Image(systemName: "bolt.fill")
+                                    Text("开始测试")
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
+                        .disabled(testing)
+                        .padding(.horizontal, 20)
+                        
+                        // Test result
+                        HStack(spacing: 10) {
+                            StatusDot(status: provider.lastTest.status)
+                            Text(provider.lastTest.message ?? "点击上方按钮开始测试连接")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 20)
                     }
-                    StatusDot(status: provider.lastTest.status)
-                    Text(provider.lastTest.message ?? "未测试")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Button(action: copyCurl) {
-                        Label(NSLocalizedString("CopyCurl", comment: "Copy curl"), systemImage: "doc.on.doc")
-                    }
                 }
+                
+                Spacer(minLength: 32)
             }
         }
+        .background(Color(NSColor.controlBackgroundColor))
         .onDisappear { store.update(provider) }
         .onReceive(store.$providers) { _ in
             if let fresh = store.providers.first(where: { $0.id == provider.id }) {
                 self.provider = fresh
             }
         }
-        .navigationTitle(provider.name)
-        .padding()
+        .navigationTitle("")
     }
 
     private var hasKey: Bool {
@@ -134,78 +260,9 @@ struct ProviderDetailView: View {
         testing = true
         Task { await store.test(provider: provider); await MainActor.run { testing = false } }
     }
-
-    private func fetchModels() {
-        loadingModels = true
-        modelsMessage = nil
-        let current = provider
-        Task {
-            let adapter = AdapterFactory.make(for: current)
-            let (list, msg) = await adapter.listModels(provider: current)
-            await MainActor.run {
-                self.models = list
-                self.modelsMessage = msg
-                self.loadingModels = false
-            }
-        }
-    }
 }
 
-extension ProviderDetailView {
-    private func copyCurl() {
-        let curl: String
-        switch provider.kind {
-        case .ollama:
-            let url = URL(string: provider.baseURL)?.appendingPathComponent("api/tags").absoluteString ?? "<base>/api/tags"
-            curl = "curl -s \"\(url)\""
-        case .openAICompatible:
-            let base = URL(string: provider.baseURL)
-            let path = (base?.path.trimmingCharacters(in: CharacterSet(charactersIn: "/")) ?? "")
-            let url = (path.hasSuffix("v1") ? base?.appendingPathComponent("models") : base?.appendingPathComponent("v1/models"))?.absoluteString ?? "<base>/v1/models"
-            var header = ""
-            if case let .bearer(keyRef) = provider.auth, let k = try? KeychainService.shared.read(account: keyRef) ?? nil {
-                header = " -H \"Authorization: Bearer \(k)\""
-            }
-            let extras = provider.extraHeaders.map { " -H \"\($0.key): \($0.value)\"" }.joined()
-            curl = "curl -s\(header)\(extras) \"\(url)\""
-        case .aliyunNative:
-            let url = URL(string: provider.baseURL)?.appendingPathComponent("api/v1/models").absoluteString ?? "<base>/api/v1/models"
-            var header = ""
-            if case let .bearer(keyRef) = provider.auth, let k = try? KeychainService.shared.read(account: keyRef) ?? nil {
-                header = " -H \"Authorization: Bearer \(k)\""
-            }
-            let extras = provider.extraHeaders.map { " -H \"\($0.key): \($0.value)\"" }.joined()
-            curl = "curl -s\(header)\(extras) \"\(url)\""
-        }
-        let pb = NSPasteboard.general
-        pb.clearContents()
-        pb.setString(curl, forType: .string)
-    }
-}
 
-struct KeyValueEditorView: View {
-    @Binding var dict: [String: String]
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            if dict.isEmpty {
-                Text("无额外 Header")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            } else {
-                ForEach(Array(dict.keys).sorted(), id: \.self) { k in
-                    let v = dict[k] ?? ""
-                    HStack {
-                        TextField("Key", text: .constant(k))
-                            .disabled(true)
-                        TextField("Value", text: Binding(get: { v }, set: { dict[k] = $0 }))
-                        Button(role: .destructive) { dict.removeValue(forKey: k) } label: { Image(systemName: "trash") }
-                    }
-                }
-            }
-        }
-    }
-}
 
 extension Binding where Value == String {
     static func fromOptional(_ source: Binding<String?>, replacingNilWith nilReplacement: String = "") -> Binding<String> {
