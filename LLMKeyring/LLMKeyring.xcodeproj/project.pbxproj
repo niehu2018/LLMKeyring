@@ -1,0 +1,270 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+        100000001 /* LLMManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000001 /* LLMManagerApp.swift */; };
+        100000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010 /* ContentView.swift */; };
+        100000003 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000011 /* MenuBarView.swift */; };
+        100000004 /* ProviderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000012 /* ProviderDetailView.swift */; };
+        100000005 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000002 /* Provider.swift */; };
+        100000006 /* ModelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000003 /* ModelInfo.swift */; };
+        100000007 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000004 /* KeychainService.swift */; };
+        100000008 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000005 /* HTTPClient.swift */; };
+        100000009 /* ProviderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000006 /* ProviderAdapter.swift */; };
+        10000000A /* OpenAICompatibleAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000007 /* OpenAICompatibleAdapter.swift */; };
+        10000000B /* OllamaAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000008 /* OllamaAdapter.swift */; };
+        10000000C /* ProviderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000009 /* ProviderStore.swift */; };
+        10000000D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 200000030 /* Localizable.strings */; };
+        10000000E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000021 /* SettingsView.swift */; };
+        10000000F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200000040 /* Assets.xcassets */; };
+        100000010 /* AppIconGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000050 /* AppIconGenerator.swift */; };
+        100000011 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000021 /* SettingsView.swift */; };
+        100000012 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000060 /* HomepageView.swift */; };
+        100000013 /* AliyunDashScopeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000061 /* AliyunDashScopeAdapter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+        200000000 /* LLMKeyring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLMKeyring.app; sourceTree = BUILT_PRODUCTS_DIR; };
+        200000001 /* LLMManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/LLMManagerApp.swift; sourceTree = "<group>"; };
+        200000002 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Provider.swift; sourceTree = "<group>"; };
+        200000003 /* ModelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/ModelInfo.swift; sourceTree = "<group>"; };
+        200000004 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain/KeychainService.swift; sourceTree = "<group>"; };
+        200000005 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking/HTTPClient.swift; sourceTree = "<group>"; };
+        200000006 /* ProviderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/ProviderAdapter.swift; sourceTree = "<group>"; };
+        200000007 /* OpenAICompatibleAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/OpenAICompatibleAdapter.swift; sourceTree = "<group>"; };
+        200000008 /* OllamaAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/OllamaAdapter.swift; sourceTree = "<group>"; };
+        200000009 /* ProviderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage/ProviderStore.swift; sourceTree = "<group>"; };
+        200000010 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/ContentView.swift; sourceTree = "<group>"; };
+        200000011 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/MenuBarView.swift; sourceTree = "<group>"; };
+        200000012 /* ProviderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/ProviderDetailView.swift; sourceTree = "<group>"; };
+        200000013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+        200000014 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+        200000015 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+        200000030 /* Localizable.strings */ = {isa = PBXVariantGroup; children = ( 200000014 /* en */, 200000015 /* zh-Hans */ ); name = Localizable.strings; sourceTree = "<group>"; };
+        200000021 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/SettingsView.swift; sourceTree = "<group>"; };
+        200000040 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+        200000050 /* AppIconGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/AppIconGenerator.swift; sourceTree = "<group>"; };
+        200000060 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HomepageView.swift; sourceTree = "<group>"; };
+        200000061 /* AliyunDashScopeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/AliyunDashScopeAdapter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+        300000000 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = ( ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+        400000000 = {
+            isa = PBXGroup;
+            children = (
+                400000001 /* Sources */,
+                500000000 /* Products */,
+            );
+            sourceTree = "<group>";
+        };
+        400000001 /* Sources */ = {
+            isa = PBXGroup;
+            path = "";
+            sourceTree = SOURCE_ROOT;
+            children = (
+                200000040 /* Assets.xcassets */,
+                200000050 /* AppIconGenerator.swift */,
+                200000001 /* LLMManagerApp.swift */,
+                200000010 /* ContentView.swift */,
+                200000011 /* MenuBarView.swift */,
+                200000060 /* HomepageView.swift */,
+                200000012 /* ProviderDetailView.swift */,
+                200000021 /* SettingsView.swift */,
+                200000002 /* Provider.swift */,
+                200000003 /* ModelInfo.swift */,
+                200000004 /* KeychainService.swift */,
+                200000005 /* HTTPClient.swift */,
+                200000006 /* ProviderAdapter.swift */,
+                200000007 /* OpenAICompatibleAdapter.swift */,
+                200000008 /* OllamaAdapter.swift */,
+                200000061 /* AliyunDashScopeAdapter.swift */,
+                200000009 /* ProviderStore.swift */,
+                200000013 /* Info.plist */,
+                200000030 /* Localizable.strings */,
+            );
+        };
+        500000000 /* Products */ = {
+            isa = PBXGroup;
+            children = (
+                200000000 /* LLMKeyring.app */,
+            );
+            name = Products;
+            sourceTree = "<group>";
+        };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+        600000000 /* LLMKeyring */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = 900000001 /* Build configuration list for PBXNativeTarget "LLMKeyring" */;
+            buildPhases = (
+                700000000 /* Sources */,
+                300000000 /* Frameworks */,
+                800000000 /* Resources */,
+            );
+            buildRules = ( );
+            dependencies = ( );
+            name = LLMKeyring;
+            productName = LLMKeyring;
+            productReference = 200000000 /* LLMKeyring.app */;
+            productType = "com.apple.product-type.application";
+        };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+        700000001 /* Project object */ = {
+            isa = PBXProject;
+            attributes = {
+                LastSwiftUpdateCheck = 1500;
+                LastUpgradeCheck = 1500;
+                TargetAttributes = {
+                    600000000 = {
+                        CreatedOnToolsVersion = 15.0;
+                    };
+                };
+            };
+            buildConfigurationList = 900000003 /* Build configuration list for PBXProject "LLMKeyring" */;
+            compatibilityVersion = "Xcode 14.0";
+            developmentRegion = en;
+            hasScannedForEncodings = 0;
+            knownRegions = (
+                en,
+                "zh-Hans",
+            );
+            mainGroup = 400000000;
+            productRefGroup = 500000000 /* Products */;
+            projectDirPath = "";
+            projectRoot = "";
+            targets = (
+                600000000 /* LLMKeyring */,
+            );
+        };
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+        800000000 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
+                10000000D /* Localizable.strings in Resources */,
+                10000000F /* Assets.xcassets in Resources */,
+            ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+        700000000 /* Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                100000010 /* AppIconGenerator.swift in Sources */,
+                100000011 /* SettingsView.swift in Sources */,
+                100000012 /* HomepageView.swift in Sources */,
+                100000001 /* LLMManagerApp.swift in Sources */,
+                100000002 /* ContentView.swift in Sources */,
+                100000003 /* MenuBarView.swift in Sources */,
+                100000004 /* ProviderDetailView.swift in Sources */,
+                100000005 /* Provider.swift in Sources */,
+                100000006 /* ModelInfo.swift in Sources */,
+                100000007 /* KeychainService.swift in Sources */,
+                100000008 /* HTTPClient.swift in Sources */,
+                100000009 /* ProviderAdapter.swift in Sources */,
+                10000000A /* OpenAICompatibleAdapter.swift in Sources */,
+                10000000B /* OllamaAdapter.swift in Sources */,
+                100000013 /* AliyunDashScopeAdapter.swift in Sources */,
+                10000000C /* ProviderStore.swift in Sources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+        900000000 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+                CLANG_ENABLE_OBJC_ARC = YES;
+                CODE_SIGN_STYLE = Automatic;
+                ENABLE_HARDENED_RUNTIME = YES;
+                INFOPLIST_FILE = Info.plist;
+                LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
+                MACOSX_DEPLOYMENT_TARGET = 13.0;
+                MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+                PRODUCT_BUNDLE_IDENTIFIER = com.example.LLMKeyring;
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SDKROOT = macosx;
+                SUPPORTED_PLATFORMS = "macosx";
+                SWIFT_EMIT_LOC_STRINGS = YES;
+                SWIFT_VERSION = 5.0;
+            };
+            name = Debug;
+        };
+        900000002 /* Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+                CLANG_ENABLE_OBJC_ARC = YES;
+                CODE_SIGN_STYLE = Automatic;
+                ENABLE_HARDENED_RUNTIME = YES;
+                INFOPLIST_FILE = Info.plist;
+                LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks");
+                MACOSX_DEPLOYMENT_TARGET = 13.0;
+                PRODUCT_BUNDLE_IDENTIFIER = com.example.LLMKeyring;
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SDKROOT = macosx;
+                SUPPORTED_PLATFORMS = "macosx";
+                SWIFT_EMIT_LOC_STRINGS = YES;
+                SWIFT_VERSION = 5.0;
+            };
+            name = Release;
+        };
+        900000004 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                GCC_C_LANGUAGE_STANDARD = gnu17;
+                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+            };
+            name = Debug;
+        };
+        900000005 /* Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                GCC_C_LANGUAGE_STANDARD = gnu17;
+                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+            };
+            name = Release;
+        };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+        900000001 /* Build configuration list for PBXNativeTarget "LLMKeyring" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                900000000 /* Debug */,
+                900000002 /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        900000003 /* Build configuration list for PBXProject "LLMKeyring" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                900000004 /* Debug */,
+                900000005 /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+/* End XCConfigurationList section */
+
+    };
+    rootObject = 700000001 /* Project object */;
+}
