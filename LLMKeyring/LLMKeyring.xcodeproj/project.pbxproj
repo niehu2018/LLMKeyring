@@ -25,6 +25,7 @@
         100000012 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000060 /* HomepageView.swift */; };
         100000013 /* AliyunDashScopeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000061 /* AliyunDashScopeAdapter.swift */; };
         100000014 /* BaseURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000051 /* BaseURLHelper.swift */; };
+        100000015 /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000052 /* LocalizationHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
         200000040 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
         200000050 /* AppIconGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/AppIconGenerator.swift; sourceTree = "<group>"; };
         200000051 /* BaseURLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/BaseURLHelper.swift; sourceTree = "<group>"; };
+        200000052 /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/LocalizationHelper.swift; sourceTree = "<group>"; };
         200000060 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HomepageView.swift; sourceTree = "<group>"; };
         200000061 /* AliyunDashScopeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers/AliyunDashScopeAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
                 200000040 /* Assets.xcassets */,
                 200000050 /* AppIconGenerator.swift */,
                 200000051 /* BaseURLHelper.swift */,
+                200000052 /* LocalizationHelper.swift */,
                 200000001 /* LLMManagerApp.swift */,
                 200000010 /* ContentView.swift */,
                 200000011 /* MenuBarView.swift */,
@@ -163,6 +166,7 @@
             files = (
                 100000010 /* AppIconGenerator.swift in Sources */,
                 100000014 /* BaseURLHelper.swift in Sources */,
+                100000015 /* LocalizationHelper.swift in Sources */,
                 100000011 /* SettingsView.swift in Sources */,
                 100000012 /* HomepageView.swift in Sources */,
                 100000001 /* LLMManagerApp.swift in Sources */,
