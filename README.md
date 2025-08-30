@@ -1,5 +1,6 @@
 # LLMKeyring
 
+[![macOS Build](https://github.com/niehu2018/LLMKeyring/actions/workflows/macos-build.yml/badge.svg?branch=main)](https://github.com/niehu2018/LLMKeyring/actions/workflows/macos-build.yml)
 [![Download Latest](https://img.shields.io/github/v/release/niehu2018/LLMKeyring?label=Download%20Latest)](https://github.com/niehu2018/LLMKeyring/releases/latest)
 
 Simple, convenient, free, and open‑source key manager for LLM APIs on macOS. Add your favorite providers once, keep keys safe in Keychain, and switch or test with a single click — no fuss.
