@@ -37,6 +37,9 @@ struct ContentView: View {
                     Button(NSLocalizedString("TemplateAzureOpenAI", comment: "Azure OpenAI")) { addTemplate(.azureOpenAI) }
                     Button(NSLocalizedString("TemplateOpenRouter", comment: "OpenRouter")) { addTemplate(.openRouter) }
                     Button(NSLocalizedString("TemplateTogether", comment: "Together AI")) { addTemplate(.together) }
+                    Button(NSLocalizedString("TemplateMistral", comment: "Mistral")) { addTemplate(.mistral) }
+                    Button(NSLocalizedString("TemplateGroq", comment: "Groq")) { addTemplate(.groq) }
+                    Button(NSLocalizedString("TemplateFireworks", comment: "Fireworks AI")) { addTemplate(.fireworks) }
                     Divider()
                     Button(NSLocalizedString("BlankProvider", comment: "Blank")) { addTemplate(.blank) }
                 } label: {
@@ -49,7 +52,7 @@ struct ContentView: View {
         .navigationTitle("提供商管理")
     }
 
-    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, azureOpenAI, openRouter, together, blank }
+    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, azureOpenAI, openRouter, together, mistral, groq, fireworks, blank }
 
     private func addTemplate(_ t: Template) {
         let p: Provider
@@ -72,6 +75,12 @@ struct ContentView: View {
             p = Provider(name: NSLocalizedString("ProviderNameOpenRouter", comment: "OpenRouter"), kind: .openAICompatible, baseURL: "https://openrouter.ai/api", defaultModel: nil, enabled: true, auth: .none)
         case .together:
             p = Provider(name: NSLocalizedString("ProviderNameTogether", comment: "Together AI"), kind: .openAICompatible, baseURL: "https://api.together.xyz", defaultModel: nil, enabled: true, auth: .none)
+        case .mistral:
+            p = Provider(name: NSLocalizedString("ProviderNameMistral", comment: "Mistral"), kind: .openAICompatible, baseURL: "https://api.mistral.ai", defaultModel: nil, enabled: true, auth: .none)
+        case .groq:
+            p = Provider(name: NSLocalizedString("ProviderNameGroq", comment: "Groq"), kind: .openAICompatible, baseURL: "https://api.groq.com/openai", defaultModel: nil, enabled: true, auth: .none)
+        case .fireworks:
+            p = Provider(name: NSLocalizedString("ProviderNameFireworks", comment: "Fireworks AI"), kind: .openAICompatible, baseURL: "https://api.fireworks.ai/inference", defaultModel: nil, enabled: true, auth: .none)
         case .blank:
             p = Provider(name: NSLocalizedString("BlankProvider", comment: "Blank"), kind: .openAICompatible, baseURL: "https://", defaultModel: nil, enabled: true, auth: .none)
         }

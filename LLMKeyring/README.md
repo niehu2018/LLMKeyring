@@ -68,6 +68,9 @@ If you pulled an older revision with name "LLMManager", run `bash LLMManager/scr
  - Azure OpenAI: `https://<resource>.openai.azure.com`
  - OpenRouter: `https://openrouter.ai/api`
  - Together AI: `https://api.together.xyz`
+ - Mistral: `https://api.mistral.ai`
+ - Groq (OpenAI path): `https://api.groq.com/openai`
+ - Fireworks AI: `https://api.fireworks.ai/inference`
 
 OpenAI-compatible adapter auto-normalizes the path:
 - If you include `/v1`, it requests `/v1/models`.

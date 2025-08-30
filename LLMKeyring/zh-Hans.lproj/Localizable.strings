@@ -114,6 +114,12 @@
 "TemplateAzureOpenAI" = "Azure OpenAI";
 "TemplateOpenRouter" = "OpenRouter";
 "TemplateTogether" = "Together AI";
+"TemplateMistral" = "Mistral";
+"TemplateGroq" = "Groq";
+"TemplateFireworks" = "Fireworks AI";
 "ProviderNameAzureOpenAI" = "Azure OpenAI";
 "ProviderNameOpenRouter" = "OpenRouter";
 "ProviderNameTogether" = "Together AI";
+"ProviderNameMistral" = "Mistral";
+"ProviderNameGroq" = "Groq";
+"ProviderNameFireworks" = "Fireworks AI";
