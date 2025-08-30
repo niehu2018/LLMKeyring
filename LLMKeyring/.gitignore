@@ -1,0 +1,37 @@
+# Claude Code configuration files
+AGENTS.md
+CLAUDE.md
+
+# Xcode
+.DS_Store
+build/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode user settings
+xcuserdata/
+
+# Xcode project files
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+!*.xcworkspace/xcshareddata/
+
+# CocoaPods (if used)
+Pods/
+
+# Carthage (if used)
+Carthage/Build/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
