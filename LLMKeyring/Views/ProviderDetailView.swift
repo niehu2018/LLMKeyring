@@ -102,6 +102,9 @@ struct ProviderDetailView: View {
                             }
                             .buttonStyle(.bordered)
                             .controlSize(.small)
+                            Text(NSLocalizedString("NormalizeExplain", comment: "Explain normalize"))
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                             if provider.kind == .openAICompatible && provider.baseURL.contains("aliyuncs.com") {
                                 Text(NSLocalizedString("HintAliyunBaseURL", comment: "Aliyun base URL hint"))
                                     .font(.caption)
