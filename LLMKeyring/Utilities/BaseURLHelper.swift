@@ -28,8 +28,6 @@ enum BaseURLHelper {
             return trimmed
         case .aliyunNative:
             return "https://dashscope.aliyuncs.com/api/v1"
-        case .ollama:
-            return "http://127.0.0.1:11434"
         case .anthropic:
             return "https://api.anthropic.com"
         case .googleGemini:
@@ -87,4 +85,3 @@ enum BaseURLHelper {
         return nil
     }
 }
-

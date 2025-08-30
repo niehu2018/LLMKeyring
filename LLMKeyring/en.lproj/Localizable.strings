@@ -35,7 +35,6 @@
 "ERR_ROUTE_HINT_ALIYUN" = "Route error. For Aliyun compatible mode, use https://dashscope.aliyuncs.com/compatible-mode";
 "ERR_RATE_LIMITED" = "Rate limited (429)";
 "ERR_HTTP_CODE_FMT" = "HTTP %d";
-"ERR_ROUTE_HINT_OLLAMA" = "Route error. Check Base URL (no /v1)";
 
 /* Titles */
 "ManagerTitle" = "Keyring";
@@ -60,7 +59,6 @@
 /* Kinds */
 "KindOpenAICompatible" = "OpenAI-Compatible";
 "KindAliyunNative" = "Aliyun (DashScope Native)";
-"KindOllama" = "Ollama";
 "KindAnthropic" = "Anthropic";
 "KindGoogleGemini" = "Google Gemini";
 
