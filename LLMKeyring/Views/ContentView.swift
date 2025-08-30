@@ -117,20 +117,21 @@ struct ProviderListView: View {
             Label(NSLocalizedString("Homepage", comment: "Homepage"), systemImage: "house")
                 .tag(SidebarItem.homepage)
             Section(NSLocalizedString("ProvidersSection", comment: "Providers")) {
-            ForEach(store.providers) { p in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(p.name)
-                        Text(p.kind.displayName)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                ForEach(store.providers) { p in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(p.name)
+                            Text(p.kind.displayName)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        StatusDot(status: p.lastTest.status)
                     }
-                    Spacer()
-                    StatusDot(status: p.lastTest.status)
+                    .tag(SidebarItem.provider(p.id))
                 }
-                .tag(SidebarItem.provider(p.id))
+                .onMove(perform: moveProviders)
             }
-            .onMove(perform: moveProviders)
         }
     }
     
