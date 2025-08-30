@@ -34,6 +34,7 @@ struct ContentView: View {
                     Button(NSLocalizedString("TemplateSiliconFlow", comment: "SiliconFlow")) { addTemplate(.siliconflow) }
                     Button(NSLocalizedString("TemplateAnthropic", comment: "Anthropic")) { addTemplate(.anthropic) }
                     Button(NSLocalizedString("TemplateGoogleGemini", comment: "Google Gemini")) { addTemplate(.googleGemini) }
+                    Button(NSLocalizedString("TemplateVertexGemini", comment: "Vertex AI Gemini")) { addTemplate(.vertexGemini) }
                     Button(NSLocalizedString("TemplateAzureOpenAI", comment: "Azure OpenAI")) { addTemplate(.azureOpenAI) }
                     Button(NSLocalizedString("TemplateOpenRouter", comment: "OpenRouter")) { addTemplate(.openRouter) }
                     Button(NSLocalizedString("TemplateTogether", comment: "Together AI")) { addTemplate(.together) }
@@ -52,7 +53,7 @@ struct ContentView: View {
         .navigationTitle("提供商管理")
     }
 
-    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, azureOpenAI, openRouter, together, mistral, groq, fireworks, blank }
+    private enum Template { case deepseek, kimi, aliyunNative, siliconflow, anthropic, googleGemini, vertexGemini, azureOpenAI, openRouter, together, mistral, groq, fireworks, zhipuGLM, baiduQianfan, blank }
 
     private func addTemplate(_ t: Template) {
         let p: Provider
@@ -69,6 +70,8 @@ struct ContentView: View {
             p = Provider(name: NSLocalizedString("ProviderNameAnthropic", comment: "Anthropic"), kind: .anthropic, baseURL: "https://api.anthropic.com", defaultModel: nil, enabled: true, auth: .none)
         case .googleGemini:
             p = Provider(name: NSLocalizedString("ProviderNameGoogleGemini", comment: "Google Gemini"), kind: .googleGemini, baseURL: "https://generativelanguage.googleapis.com", defaultModel: nil, enabled: true, auth: .none)
+        case .vertexGemini:
+            p = Provider(name: NSLocalizedString("KindVertexGemini", comment: "Vertex AI Gemini"), kind: .vertexGemini, baseURL: "https://us-central1-aiplatform.googleapis.com/v1/projects/YOUR_PROJECT/locations/us-central1", defaultModel: nil, enabled: true, auth: .bearer(keyRef: "prov_\(UUID().uuidString)"))
         case .azureOpenAI:
             p = Provider(name: NSLocalizedString("ProviderNameAzureOpenAI", comment: "Azure OpenAI"), kind: .azureOpenAI, baseURL: "https://YOUR_RESOURCE_NAME.openai.azure.com", defaultModel: nil, enabled: true, auth: .bearer(keyRef: "prov_\(UUID().uuidString)"))
         case .openRouter:
@@ -81,6 +84,10 @@ struct ContentView: View {
             p = Provider(name: NSLocalizedString("ProviderNameGroq", comment: "Groq"), kind: .openAICompatible, baseURL: "https://api.groq.com/openai", defaultModel: nil, enabled: true, auth: .none)
         case .fireworks:
             p = Provider(name: NSLocalizedString("ProviderNameFireworks", comment: "Fireworks AI"), kind: .openAICompatible, baseURL: "https://api.fireworks.ai/inference", defaultModel: nil, enabled: true, auth: .none)
+        case .zhipuGLM:
+            p = Provider(name: NSLocalizedString("KindZhipuGLM", comment: "Zhipu GLM"), kind: .zhipuGLMNative, baseURL: "https://open.bigmodel.cn/api/paas/v4", defaultModel: nil, enabled: true, auth: .none)
+        case .baiduQianfan:
+            p = Provider(name: NSLocalizedString("KindBaiduQianfan", comment: "Baidu Qianfan"), kind: .baiduQianfan, baseURL: "https://aip.baidubce.com", defaultModel: nil, enabled: true, auth: .none)
         case .blank:
             p = Provider(name: NSLocalizedString("BlankProvider", comment: "Blank"), kind: .openAICompatible, baseURL: "https://", defaultModel: nil, enabled: true, auth: .none)
         }

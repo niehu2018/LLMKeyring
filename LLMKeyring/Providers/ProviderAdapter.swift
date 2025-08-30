@@ -25,6 +25,12 @@ enum AdapterFactory {
             return GoogleGeminiAdapter()
         case .azureOpenAI:
             return AzureOpenAIAdapter()
+        case .zhipuGLMNative:
+            return ZhipuGLMNativeAdapter()
+        case .baiduQianfan:
+            return BaiduQianfanAdapter()
+        case .vertexGemini:
+            return VertexGeminiAdapter()
         }
     }
 }
