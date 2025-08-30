@@ -24,13 +24,8 @@
 "移除" = "Remove";
 "已保存" = "Saved";
 
-"额外 Header（可选）" = "Extra Headers (optional)";
 "连通性测试" = "Connectivity Test";
 "未测试" = "Not tested";
-
-"新 Key" = "New Key";
-"新 Value" = "New Value";
-"添加" = "Add";
 
 /* Adapter messages */
 "OK" = "OK";
@@ -50,32 +45,23 @@
 "TemplateDeepSeek" = "DeepSeek";
 "TemplateKimi" = "Kimi (Moonshot)";
 "TemplateSiliconFlow" = "SiliconFlow";
-"TemplateOllama" = "Ollama (local)";
 "TemplateAliyunNative" = "Aliyun (DashScope Native)";
 "BlankProvider" = "New Provider";
 
 "ProviderNameDeepSeek" = "DeepSeek";
 "ProviderNameKimi" = "Kimi (Moonshot)";
 "ProviderNameSiliconFlow" = "SiliconFlow";
-"ProviderNameOllama" = "Ollama (local)";
 "ProviderNameAliyunNative" = "Aliyun (DashScope Native)";
 
 /* Kinds */
 "KindOpenAICompatible" = "OpenAI-Compatible";
-"KindOllama" = "Ollama";
 "KindAliyunNative" = "Aliyun (DashScope Native)";
+"KindOllama" = "Ollama";
+"KindAnthropic" = "Anthropic";
+"KindGoogleGemini" = "Google Gemini";
 
 /* Hints */
 "HintAliyunBaseURL" = "For Aliyun compatible mode, use https://dashscope.aliyuncs.com/compatible-mode. We normalize /v1/models automatically.";
-
-/* Models */
-"ModelsSection" = "Models";
-"FetchModels" = "Fetch Models";
-"ModelsCountFmt" = "%d models";
-"PickDefaultModel" = "Pick Default Model";
-"ERR_LIST_MODELS_UNSUPPORTED" = "Listing models is not supported for this provider";
-"ERR_NO_MODELS_FOUND" = "No models found";
-"ERR_OLLAMA_LOCALHOST_IPV6_HINT" = "If connecting to localhost fails, try using http://127.0.0.1:11434 or ensure 'ollama serve' is running (e.g., 'brew services start ollama').";
 
 /* Homepage */
 "Homepage" = "Homepage";
@@ -89,9 +75,6 @@
 "Copy" = "Copy";
 "Copied" = "Copied";
 "Open" = "Open";
-"CopyCurl" = "Copy curl";
-"AuthNotRequiredOllama" = "Local Ollama does not require an API key";
-"ClearSavedKey" = "Clear saved key";
 
 /* Clear All Keys */
 "ClearAllKeys" = "Clear All API Keys";
@@ -99,3 +82,24 @@
 "ClearKeysMessage" = "This will permanently delete all stored API keys. This action cannot be undone.";
 "ClearKeys" = "Clear";
 "Cancel" = "Cancel";
+
+/* New UI Text - ProviderDetailView */
+"BasicConfiguration" = "Basic Configuration";
+"APIKey" = "API Key";
+"ConnectionTest" = "Connection Test";
+"Enabled" = "Enabled";
+"Disabled" = "Disabled";
+"SafelySaved" = "Safely Saved";
+"NoAPIKeySaved" = "No API Key Saved";
+"EnterAPIKey" = "Enter API Key";
+"SaveSuccess" = "Save Successful";
+"StartTest" = "Start Test";
+"Testing" = "Testing...";
+"ClickToStartTest" = "Click the button above to start connection test";
+"ProviderNamePlaceholder" = "Provider Name";
+
+/* New UI Text - HomepageView */
+"CopyAPIKey" = "Copy API Key";
+"CopyBaseURL" = "Copy Base URL";
+"APIKeyCopied" = "API Key Copied";
+"BaseURLCopied" = "Base URL Copied";

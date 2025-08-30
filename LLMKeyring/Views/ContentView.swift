@@ -8,8 +8,6 @@ enum SidebarItem: Hashable {
 struct ContentView: View {
     @EnvironmentObject var store: ProviderStore
     @State private var selection: SidebarItem? = .homepage
-    @State private var isTesting = false
-    @State private var showingClearConfirmation = false
 
     var body: some View {
         NavigationSplitView {
@@ -41,30 +39,9 @@ struct ContentView: View {
                 }
                 Button(action: deleteSelected) { Label("删除", systemImage: "trash") }
                     .disabled(!isProviderSelected)
-                Button(action: setDefault) { Label("设为默认", systemImage: "star") }
-                    .disabled(!isProviderSelected)
-                Button(action: testSelected) {
-                    if isTesting { ProgressView() } else { Label("测试", systemImage: "bolt") }
-                }
-                .disabled(!isProviderSelected || isTesting)
-                
-                Divider()
-                
-                Button(action: { showingClearConfirmation = true }) {
-                    Label(NSLocalizedString("ClearAllKeys", comment: "Clear all API keys"), systemImage: "key.slash")
-                }
-                .foregroundColor(.red)
             }
         }
         .navigationTitle("提供商管理")
-        .alert(NSLocalizedString("ClearKeysTitle", comment: "Clear all API keys?"), isPresented: $showingClearConfirmation) {
-            Button(NSLocalizedString("Cancel", comment: "Cancel"), role: .cancel) { }
-            Button(NSLocalizedString("ClearKeys", comment: "Clear keys"), role: .destructive) {
-                clearAllKeys()
-            }
-        } message: {
-            Text(NSLocalizedString("ClearKeysMessage", comment: "This will permanently delete all stored API keys. This action cannot be undone."))
-        }
     }
 
     private enum Template { case deepseek, kimi, aliyunNative, siliconflow, blank }
@@ -98,26 +75,6 @@ struct ContentView: View {
         store.delete(p)
         if let first = store.providers.first { selection = .provider(first.id) } else { selection = .homepage }
     }
-
-    private func setDefault() {
-        guard let p = selectedProvider else { return }
-        store.setDefault(p)
-    }
-
-    private func testSelected() {
-        guard let p = selectedProvider else { return }
-        isTesting = true
-        Task { await store.test(provider: p); await MainActor.run { isTesting = false } }
-    }
-    
-    private func clearAllKeys() {
-        do {
-            try store.clearAllAPIKeys()
-        } catch {
-            // Handle error silently or show alert if needed
-            print("Failed to clear API keys: \(error)")
-        }
-    }
 }
 
 struct ProviderListView: View {
@@ -138,9 +95,6 @@ struct ProviderListView: View {
                             .foregroundColor(.secondary)
                     }
                     Spacer()
-                    if store.defaultProviderID == p.id {
-                        Image(systemName: "star.fill").foregroundColor(.yellow)
-                    }
                     StatusDot(status: p.lastTest.status)
                 }
                 .tag(SidebarItem.provider(p.id))

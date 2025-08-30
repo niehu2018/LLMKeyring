@@ -4,6 +4,8 @@ enum ProviderKind: String, Codable, CaseIterable, Identifiable {
     case openAICompatible
     case ollama
     case aliyunNative
+    case anthropic
+    case googleGemini
 
     var id: String { rawValue }
 
@@ -12,6 +14,8 @@ enum ProviderKind: String, Codable, CaseIterable, Identifiable {
         case .openAICompatible: return NSLocalizedString("KindOpenAICompatible", comment: "Kind: OpenAI compatible")
         case .ollama: return NSLocalizedString("KindOllama", comment: "Kind: Ollama")
         case .aliyunNative: return NSLocalizedString("KindAliyunNative", comment: "Kind: Aliyun DashScope native")
+        case .anthropic: return NSLocalizedString("KindAnthropic", comment: "Kind: Anthropic")
+        case .googleGemini: return NSLocalizedString("KindGoogleGemini", comment: "Kind: Google Gemini")
         }
     }
 }
