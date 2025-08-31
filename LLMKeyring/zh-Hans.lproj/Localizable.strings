@@ -6,10 +6,6 @@
 "测试" = "测试";
 "提供商管理" = "提供商管理";
 
-"未设置默认提供商" = "未设置默认提供商";
-"切换默认提供商" = "切换默认提供商";
-"打开管理器" = "打开管理器";
-"测试默认提供商" = "测试默认提供商";
 
 "基本信息" = "基本信息";
 "名称" = "名称";
@@ -38,7 +34,6 @@
 
 /* 标题 */
 "ManagerTitle" = "钥匙串";
-"LLMTitle" = "钥匙串";
 
 /* 模板与默认名称 */
 "TemplateDeepSeek" = "DeepSeek";
@@ -114,11 +109,6 @@
 /* 配置字段 */
 "BaseURL" = "Base URL";
 
-/* 菜单栏文本 */
-"NoDefaultProvider" = "未设置默认提供商";
-"SwitchDefaultProvider" = "切换默认提供商";
-"OpenManager" = "打开管理器";
-"TestDefaultProvider" = "测试默认提供商";
 
 /* 更多类型与模板 */
 "KindAzureOpenAI" = "Azure OpenAI";

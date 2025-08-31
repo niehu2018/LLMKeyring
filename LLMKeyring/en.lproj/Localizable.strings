@@ -6,10 +6,6 @@
 "测试" = "Test";
 "提供商管理" = "Provider Manager";
 
-"未设置默认提供商" = "No default provider";
-"切换默认提供商" = "Switch Default Provider";
-"打开管理器" = "Open Manager";
-"测试默认提供商" = "Test Default Provider";
 
 "基本信息" = "General";
 "名称" = "Name";
@@ -38,7 +34,6 @@
 
 /* Titles */
 "ManagerTitle" = "Keyring";
-"LLMTitle" = "Keyring";
 
 /* Templates and Provider Names */
 "TemplateDeepSeek" = "DeepSeek";
@@ -114,11 +109,6 @@
 /* Configuration Fields */
 "BaseURL" = "Base URL";
 
-/* MenuBar Text */
-"NoDefaultProvider" = "No default provider set";
-"SwitchDefaultProvider" = "Switch Default Provider";
-"OpenManager" = "Open Manager";
-"TestDefaultProvider" = "Test Default Provider";
 
 /* Additional Kinds and Templates */
 "KindAzureOpenAI" = "Azure OpenAI";
