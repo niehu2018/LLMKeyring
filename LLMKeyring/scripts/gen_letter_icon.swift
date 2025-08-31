@@ -14,14 +14,20 @@ let size: CGFloat = 1024
 let img = NSImage(size: NSSize(width: size, height: size))
 img.lockFocus()
 
-// Background
-NSColor(calibratedRed: 0.12, green: 0.38, blue: 0.98, alpha: 1.0).setFill()
-NSBezierPath(rect: NSRect(x: 0, y: 0, width: size, height: size)).fill()
+// Background with rounded corners (macOS icon style approximation)
+let bgColor = NSColor(calibratedRed: 0.12, green: 0.38, blue: 0.98, alpha: 1.0)
+bgColor.setFill()
+let cornerRadius: CGFloat = size * 0.18 // ~18% for a squircle-like feel
+let bgRect = NSRect(x: 0, y: 0, width: size, height: size)
+let roundedPath = NSBezierPath(roundedRect: bgRect, xRadius: cornerRadius, yRadius: cornerRadius)
+roundedPath.fill()
 
 // Text attributes
 let paragraph = NSMutableParagraphStyle()
 paragraph.alignment = .center
-let font = NSFont.systemFont(ofSize: 720, weight: .bold)
+// Fit letter inside with padding to respect rounded corners
+let padding: CGFloat = size * 0.12
+let font = NSFont.systemFont(ofSize: size * 0.66, weight: .bold)
 let attributes: [NSAttributedString.Key: Any] = [
   .font: font,
   .foregroundColor: NSColor.white,
@@ -30,10 +36,14 @@ let attributes: [NSAttributedString.Key: Any] = [
 
 let ns = NSString(string: letter)
 let textSize = ns.size(withAttributes: attributes)
-let textRect = NSRect(x: (size - textSize.width) / 2.0,
+var textRect = NSRect(x: (size - textSize.width) / 2.0,
                       y: (size - textSize.height) / 2.0,
                       width: textSize.width,
                       height: textSize.height)
+// Center within an inset rect to avoid clipping near corners
+let insetRect = bgRect.insetBy(dx: padding, dy: padding)
+textRect.origin.x = max(insetRect.minX, min(insetRect.maxX - textRect.width, textRect.origin.x))
+textRect.origin.y = max(insetRect.minY, min(insetRect.maxY - textRect.height, textRect.origin.y))
 ns.draw(in: textRect, withAttributes: attributes)
 
 img.unlockFocus()
@@ -53,4 +63,3 @@ do {
   fputs("Write error: \(error)\n", stderr)
   exit(3)
 }
-
