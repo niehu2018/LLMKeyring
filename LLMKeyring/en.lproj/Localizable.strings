@@ -31,6 +31,8 @@
 "ERR_ROUTE_HINT_ALIYUN" = "Route error. For Aliyun compatible mode, use https://dashscope.aliyuncs.com/compatible-mode";
 "ERR_RATE_LIMITED" = "Rate limited (429)";
 "ERR_HTTP_CODE_FMT" = "HTTP %d";
+"ERR_LIST_MODELS_UNSUPPORTED" = "Listing models is not supported";
+"ERR_NO_MODELS_FOUND" = "No models found";
 
 /* Titles */
 "ManagerTitle" = "Keyring";

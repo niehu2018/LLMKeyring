@@ -31,6 +31,8 @@
 "ERR_ROUTE_HINT_ALIYUN" = "路由错误，检查 Base URL 是否正确（阿里云兼容模式建议使用 https://dashscope.aliyuncs.com/compatible-mode）";
 "ERR_RATE_LIMITED" = "频率受限（429）";
 "ERR_HTTP_CODE_FMT" = "HTTP %d";
+"ERR_LIST_MODELS_UNSUPPORTED" = "不支持列出模型";
+"ERR_NO_MODELS_FOUND" = "未找到模型";
 
 /* 标题 */
 "ManagerTitle" = "钥匙串";
