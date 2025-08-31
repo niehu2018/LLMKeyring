@@ -66,7 +66,7 @@ final class AzureOpenAIAdapter: ProviderAdapter {
 
     private func buildURLAndHeaders(provider: Provider) -> (URL, [String: String])? {
         guard let base = URL(string: provider.baseURL) else { return nil }
-        var url = base.appendingPathComponent("openai/deployments")
+        let url = base.appendingPathComponent("openai/deployments")
         var comps = URLComponents(url: url, resolvingAgainstBaseURL: false)
         var items = comps?.queryItems ?? []
         items.append(URLQueryItem(name: "api-version", value: apiVersion))
@@ -82,4 +82,3 @@ final class AzureOpenAIAdapter: ProviderAdapter {
         } catch { return nil }
     }
 }
-
