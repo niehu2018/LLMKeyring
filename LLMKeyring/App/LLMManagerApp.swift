@@ -1,10 +1,25 @@
 import SwiftUI
 import AppKit
 
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        NSApplication.shared.activate(ignoringOtherApps: true)
+    }
+
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag {
+            sender.activate(ignoringOtherApps: true)
+            sender.sendAction(#selector(NSApplication.showWindows), to: nil, from: nil)
+        }
+        return true
+    }
+}
+
 @main
 struct LLMKeyringApp: App {
     @StateObject private var store = ProviderStore()
     @StateObject private var localizationHelper = LocalizationHelper.shared
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     init() {
         // Generate a simple runtime app icon with letter "A"
@@ -19,12 +34,6 @@ struct LLMKeyringApp: App {
                 .environmentObject(localizationHelper)
         }
         .defaultSize(width: 980, height: 640)
-
-        MenuBarExtra(LocalizationHelper.shared.localizedString(for: "LLMTitle", comment: "Menu bar title"), systemImage: "bolt.circle") {
-            MenuBarView()
-                .environmentObject(store)
-                .environmentObject(localizationHelper)
-        }
 
         Settings {
             AppSettingsView()
