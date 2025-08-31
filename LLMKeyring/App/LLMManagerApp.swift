@@ -7,9 +7,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        // When the Dock icon is clicked, bring app windows to front or reopen if closed
+        sender.activate(ignoringOtherApps: true)
         if !flag {
-            sender.activate(ignoringOtherApps: true)
-            sender.sendAction(#selector(NSApplication.showWindows), to: nil, from: nil)
+            for window in sender.windows {
+                if window.isMiniaturized { window.deminiaturize(nil) }
+                window.makeKeyAndOrderFront(nil)
+            }
         }
         return true
     }
