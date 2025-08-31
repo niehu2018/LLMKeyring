@@ -30,13 +30,17 @@ JSON
 fi
 
 if [[ ! -f "$BASE_PNG" ]]; then
-  echo "[i] Base icon missing; creating minimal placeholder..."
-  TMP="$ASSET_DIR/icon_1x1.png"
-  # Transparent 1x1 PNG (base64)
-  BASE64="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
-  echo "$BASE64" | base64 --decode > "$TMP"
-  sips -Z 1024 "$TMP" --out "$BASE_PNG" >/dev/null
-  rm -f "$TMP"
+  echo "[i] Base icon missing; generating letter 'A' icon..."
+  if xcrun swift "$ROOT_DIR/scripts/gen_letter_icon.swift" "$BASE_PNG" "A"; then
+    echo "[i] Generated letter icon at $BASE_PNG"
+  else
+    echo "[!] Swift generation failed, creating minimal placeholder..." >&2
+    TMP="$ASSET_DIR/icon_1x1.png"
+    BASE64="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
+    echo "$BASE64" | base64 --decode > "$TMP"
+    sips -Z 1024 "$TMP" --out "$BASE_PNG" >/dev/null
+    rm -f "$TMP"
+  fi
 fi
 
 echo "[i] Generating resized variants..."
