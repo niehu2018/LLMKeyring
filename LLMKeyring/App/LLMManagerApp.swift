@@ -35,17 +35,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 return true
             }
             
-            // No windows exist at all - tell SwiftUI to create a new window
-            // For SwiftUI WindowGroup, we need to explicitly open a new window
-            if #available(macOS 13.0, *) {
-                // Use the new window opening approach for macOS 13+
-                NSApp.sendAction(#selector(NSResponder.newDocument(_:)), to: nil, from: nil)
-            } else {
-                // Fallback for older versions - let SwiftUI handle it
-                return false
-            }
-            
-            return true
+            // No windows exist at all - let SwiftUI handle creating a new window
+            // For WindowGroup, returning false tells SwiftUI to create a new window
+            return false
         } else {
             // Windows exist and are visible - bring the main window to front
             if let mainWindow = sender.windows.first {
