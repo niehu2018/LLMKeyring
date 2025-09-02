@@ -3,7 +3,7 @@ import Foundation
 final class GoogleGeminiAdapter: ProviderAdapter {
     // Google Generative Language (Gemini)
     // Base: https://generativelanguage.googleapis.com
-    // Models: GET /v1beta/models?key=API_KEY
+    // Models: GET /v1beta/models with x-goog-api-key header
 
     func testHealth(provider: Provider) async -> TestResult {
         guard let (url, headers) = buildModelsURLAndHeaders(provider: provider) else {
@@ -73,13 +73,12 @@ final class GoogleGeminiAdapter: ProviderAdapter {
         guard case let .bearer(keyRef) = provider.auth else { return nil }
         do {
             guard let k = try KeychainService.shared.read(account: keyRef) else { return nil }
-            var comps = URLComponents(url: url, resolvingAgainstBaseURL: false)
-            var items = comps?.queryItems ?? []
-            items.append(URLQueryItem(name: "key", value: k))
-            comps?.queryItems = items
-            if let final = comps?.url {
-                return (final, provider.extraHeaders)
-            } else { return nil }
+            
+            // Google Gemini uses x-goog-api-key header for authentication
+            var headers = provider.extraHeaders
+            headers["x-goog-api-key"] = k
+            
+            return (url, headers)
         } catch { return nil }
     }
 }
