@@ -21,54 +21,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
             
-            // If no minimized windows, try to bring any existing but hidden window to front
-            // Prioritize non-settings windows (main window)
-            for window in sender.windows {
-                if !window.isVisible {
-                    // Check if this is not a settings window by looking at the title
-                    if window.title != NSLocalizedString("Settings", comment: "") && 
-                       !window.title.contains("Settings") &&
-                       !window.title.contains("设置") {
-                        window.makeKeyAndOrderFront(nil)
-                        return true
-                    }
-                }
+            // If we have any existing window (even if not visible), try to bring it to front
+            if let window = sender.windows.first {
+                window.makeKeyAndOrderFront(nil)
+                return true
             }
             
-            // If we have any non-settings window, try to bring it to front
-            for window in sender.windows {
-                if window.title != NSLocalizedString("Settings", comment: "") && 
-                   !window.title.contains("Settings") &&
-                   !window.title.contains("设置") {
-                    window.makeKeyAndOrderFront(nil)
-                    return true
-                }
-            }
-            
-            // No main windows exist - let SwiftUI create only the main window
-            // We return false to let SwiftUI handle window creation, but we'll
-            // make sure to close any unwanted settings windows that might open
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                // Close any settings windows that might have opened accidentally
-                for window in NSApp.windows {
-                    if window.title == NSLocalizedString("Settings", comment: "") || 
-                       window.title.contains("Settings") ||
-                       window.title.contains("设置") {
-                        window.close()
-                    }
-                }
-            }
+            // No windows exist at all - let SwiftUI create a new window
+            // Returning false tells SwiftUI to create a new window for the WindowGroup
             return false
         } else {
-            // Windows exist and are visible - bring the main window to front (not settings)
-            for window in sender.windows {
-                if window.isVisible && 
-                   window.title != NSLocalizedString("Settings", comment: "") && 
-                   !window.title.contains("Settings") &&
-                   !window.title.contains("设置") {
-                    window.makeKeyAndOrderFront(nil)
-                    break
-                }
+            // Windows exist and are visible - bring the first window to front
+            if let mainWindow = sender.windows.first {
+                mainWindow.makeKeyAndOrderFront(nil)
             }
         }
         
