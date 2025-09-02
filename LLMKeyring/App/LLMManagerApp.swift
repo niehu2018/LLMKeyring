@@ -21,16 +21,33 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
             
-            // If no minimized windows, try to bring any existing window to front
+            // If no minimized windows, try to bring any existing but hidden window to front
+            for window in sender.windows {
+                if !window.isVisible {
+                    window.makeKeyAndOrderFront(nil)
+                    return true
+                }
+            }
+            
+            // If we have any window (even if not visible), try to bring it to front
             if let window = sender.windows.first {
                 window.makeKeyAndOrderFront(nil)
                 return true
             }
             
-            // If no windows at all, let SwiftUI create a new window by returning false
-            return false
+            // No windows exist at all - tell SwiftUI to create a new window
+            // For SwiftUI WindowGroup, we need to explicitly open a new window
+            if #available(macOS 13.0, *) {
+                // Use the new window opening approach for macOS 13+
+                NSApp.sendAction(#selector(NSResponder.newDocument(_:)), to: nil, from: nil)
+            } else {
+                // Fallback for older versions - let SwiftUI handle it
+                return false
+            }
+            
+            return true
         } else {
-            // Windows exist but may not be focused - bring the main window to front
+            // Windows exist and are visible - bring the main window to front
             if let mainWindow = sender.windows.first {
                 mainWindow.makeKeyAndOrderFront(nil)
             }
