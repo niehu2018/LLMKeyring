@@ -71,7 +71,7 @@ struct ContentView: View {
         case .anthropic:
             p = Provider(name: LocalizedString("ProviderNameAnthropic", comment: "Anthropic"), kind: .anthropic, baseURL: "https://api.anthropic.com", defaultModel: nil, enabled: true, auth: .none)
         case .googleGemini:
-            p = Provider(name: LocalizedString("ProviderNameGoogleGemini", comment: "Google Gemini"), kind: .googleGemini, baseURL: "https://generativelanguage.googleapis.com", defaultModel: nil, enabled: true, auth: .none)
+            p = Provider(name: LocalizedString("ProviderNameGoogleGemini", comment: "Google Gemini"), kind: .googleGemini, baseURL: "https://generativelanguage.googleapis.com", defaultModel: nil, enabled: true, auth: .bearer(keyRef: "prov_\(UUID().uuidString)"))
         case .vertexGemini:
             p = Provider(name: LocalizedString("KindVertexGemini", comment: "Vertex AI Gemini"), kind: .vertexGemini, baseURL: "https://us-central1-aiplatform.googleapis.com/v1/projects/YOUR_PROJECT/locations/us-central1", defaultModel: nil, enabled: true, auth: .bearer(keyRef: "prov_\(UUID().uuidString)"))
         case .azureOpenAI:

@@ -9,12 +9,33 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         // When the Dock icon is clicked, bring app windows to front or reopen if closed
         sender.activate(ignoringOtherApps: true)
+        
         if !flag {
+            // No visible windows - try to restore or create a main window
+            // First try to deminiaturize any minimized windows
             for window in sender.windows {
-                if window.isMiniaturized { window.deminiaturize(nil) }
+                if window.isMiniaturized {
+                    window.deminiaturize(nil)
+                    window.makeKeyAndOrderFront(nil)
+                    return true
+                }
+            }
+            
+            // If no minimized windows, try to bring any existing window to front
+            if let window = sender.windows.first {
                 window.makeKeyAndOrderFront(nil)
+                return true
+            }
+            
+            // If no windows at all, let SwiftUI create a new window by returning false
+            return false
+        } else {
+            // Windows exist but may not be focused - bring the main window to front
+            if let mainWindow = sender.windows.first {
+                mainWindow.makeKeyAndOrderFront(nil)
             }
         }
+        
         return true
     }
 }

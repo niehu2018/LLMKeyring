@@ -3,7 +3,7 @@ import Foundation
 final class GoogleGeminiAdapter: ProviderAdapter {
     // Google Generative Language (Gemini)
     // Base: https://generativelanguage.googleapis.com
-    // Models: GET /v1/models?key=API_KEY
+    // Models: GET /v1beta/models?key=API_KEY
 
     func testHealth(provider: Provider) async -> TestResult {
         guard let (url, headers) = buildModelsURLAndHeaders(provider: provider) else {
@@ -62,8 +62,13 @@ final class GoogleGeminiAdapter: ProviderAdapter {
         guard let base = URL(string: provider.baseURL) else { return nil }
         var url: URL
         let trimmed = base.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        if trimmed.hasSuffix("v1") { url = base.appendingPathComponent("models") }
-        else { url = base.appendingPathComponent("v1/models") }
+        if trimmed.hasSuffix("v1beta") { 
+            url = base.appendingPathComponent("models") 
+        } else if trimmed.hasSuffix("v1") { 
+            url = base.appendingPathComponent("models") 
+        } else { 
+            url = base.appendingPathComponent("v1beta/models") 
+        }
 
         guard case let .bearer(keyRef) = provider.auth else { return nil }
         do {

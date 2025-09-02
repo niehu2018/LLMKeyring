@@ -185,7 +185,7 @@ final class ProviderStore: ObservableObject {
             baseURL: "https://generativelanguage.googleapis.com",
             defaultModel: nil,
             enabled: true,
-            auth: .none,
+            auth: .bearer(keyRef: "prov_\(UUID().uuidString)"),
             extraHeaders: [:]
         ))
 
